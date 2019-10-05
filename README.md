@@ -20,10 +20,10 @@ O projeto está inserido na adoção de cães abandonados sem ter que estar pres
 Este projeto é importante para o aumento de adoções de caes abandonados, porque, para a pessoa que procura um cão para salvar, basta um clique para aceder a todos os caes do abrigo.
 
 ## Cenários
-Principal
+* Principal
 Pessoa consulta a lista de caes do abrigo e faz um request de adocao, que aguardará pela autorizacao do funcionario.
 
-Secundários
+* Secundários
 Funcionario confirma a request e envia uma mensagem para marcar o dia e hora de entrega
 Os dados do cao adotado seriam removidos do banco de dados apos 3 dias, mas seria removidos instantaneamente apos confirmacao de funcionario
 
