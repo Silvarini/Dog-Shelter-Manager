@@ -1,6 +1,5 @@
 # Dog Shelter Manager
 
-Participantes:
 	N'zembo  - 50039011
 	Bernardo - 50039481
 	
