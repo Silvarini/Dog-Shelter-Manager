@@ -5,7 +5,7 @@ Participantes:
 	Bernardo - 50039481
 	 
 	
-##Enquadramento
+## Enquadramento
 Ao Consultar a Dog Shelter Manager, poderá ver todos os cães do abrigo e escolher qual deseja salvar, sem ter de visitar o abrigo.
 	
 O Dog Shelter Manager é uma plataforma que permite a um utilizador, que procura um cão para adotar, ter acesso à base de dados do abrigo sem ter que visita-lo. Após a sua decisão, o utilizador escolhe a data para recolha e espera pela confirmação do funcionario do abrigo.
@@ -14,7 +14,7 @@ O projeto está inserido na adoção de cães abandonados sem ter que estar pres
 
 Este projeto é importante para o aumento de adoções de caes abandonados, porque, para a pessoa que procura um cão para salvar, basta um clique para aceder a todos os caes do abrigo.
 
-##Cenários
+## Cenários
 Principal
 Pessoa consulta a lista de caes do abrigo e faz um request de adocao, que aguardará pela autorizacao do funcionario.
 
