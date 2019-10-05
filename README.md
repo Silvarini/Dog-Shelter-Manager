@@ -1,6 +1,7 @@
 # Dog Shelter Manager
 
-	N'zembo  - 50039011<br>Bernardo - 50039481
+	N'zembo  - 50039011
+	Bernardo - 50039481
 	
 ## Table of contents
 * [Enquadramento](#Enquadramento)
