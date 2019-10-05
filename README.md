@@ -22,7 +22,7 @@ Secundários
 Funcionario confirma a request e envia uma mensagem para marcar o dia e hora de entrega
 Os dados do cao adotado seriam removidos do banco de dados apos 3 dias, mas seria removidos instantaneamente apos confirmacao de funcionario
 
-
+## Referências
 (2019). Animal Shelters & Rescues for Pet Adoption. Acedido em: 05/10/2019, em: www.petfinder.com.
 
 (2019). Adopt the Perfect Pet. Acedido em: 05/10/2019, em: www.adoptapet.com.
