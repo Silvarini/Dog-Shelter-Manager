@@ -21,11 +21,11 @@ Este projeto é importante para o aumento de adoções de caes abandonados, porq
 ## Cenários
 * Principal: Pessoa consulta a lista de caes do abrigo e faz um request de adocao, que aguardará pela autorizacao do funcionario.
 
-* Secundários: Funcionario confirma a request e envia uma mensagem para marcar o dia e hora de entrega
-Os dados do cao adotado seriam removidos do banco de dados apos 3 dias, mas seria removidos instantaneamente apos confirmacao de funcionario
+* <p>Secundários: Funcionario confirma a request e envia uma mensagem para marcar o dia e hora de entrega<br>
+Os dados do cao adotado seriam removidos do banco de dados apos 3 dias, mas seria removidos instantaneamente apos confirmacao de funcionario<p>
 
 ## Referências
-(2019). Animal Shelters & Rescues for Pet Adoption. Acedido em: 05/10/2019, em: www.petfinder.com.
+(2019). Animal Shelters & Rescues for Pet Adoption. Acedido em: 05/10/2019, em: www.petfinder.c	om.
 
 (2019). Adopt the Perfect Pet. Acedido em: 05/10/2019, em: www.adoptapet.com.
 
