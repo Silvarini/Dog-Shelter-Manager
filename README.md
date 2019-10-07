@@ -21,8 +21,8 @@ O Dog Shelter Manager é uma plataforma que tem como objetivo facilitar a intera
 * Principal:<br>Após a inserção do cão no abrigo, faz-se um registro do animal para que o mesmo fique disponível para o utilizador;
 	    <br>Utilizador consulta a lista de cães do abrigo e faz um pedido de adocão, que aguardará pela autorizacão do funcionário;
             <br>Funcionário confirma o pedido e envia uma mensagem para o utilizador com data e horário da recolha.
-* Secundários:<br> Depois de efetuada o animal deixa de estar disponível para utilizadores;
-	      <br>Após 3 dias se o animal não for devolvido é feita a eliminação permanente do cão do sistema,
+* Secundários:<br> Depois de efetuada, o animal deixa de estar disponível para utilizadores;
+	      <br>Após 3 dias se o animal não for devolvido é feita a eliminação permanente do cão do sistema.
 
 ## Referências
 (2019). Animal Shelters & Rescues for Pet Adoption. Acedido em: 05/10/2019, em: www.petfinder.com.
