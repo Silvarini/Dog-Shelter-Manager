@@ -1,14 +1,19 @@
-# Dog Shelter Manager
+# Welcome to Dog Shelter Manager
 
 	N'zembo  - 50039011
 	Bernardo - 50039481
 	
 ## Table of contents
+* [GUI](#GUI)
 * [Enquadramento](#Enquadramento)
 * [Cenários](#Cenários)
 * [Referências](#Referências)	
 	 
-	
+
+
+## GUI
+
+
 ## Enquadramento
 
 Nos dias de hoje muitos serviços que necessitavam de ser realizados presencialmente são realizados "on-line" aumentando a eficiência e eficácia com que são realizados, seguindo esta linha de pensamento certos serviços ainda precisam destas melhorias, como por exemplo abrigos para cães, em sua maioria ainda não disponhem de uma plataforma "on-line" que facilite a interação dos utilizadores, portanto para auxiliar este tipo de serviço apresenta-se o Dog Shelter Manager.
