@@ -12,6 +12,13 @@
 
 
 ## GUI
+![](GUI/LandingPageDone.png)
+![](GUI/EmployeeDone.png)
+![](GUI/AddDogDone.png)
+![](GUI/AnimalsPageDone.png)
+![](GUI/AnimalProfile.png)
+![](GUI/AdoptionPopUpDone.png)
+![](GUI/AdoptionConfirmation.PNG)
 
 
 ## Enquadramento
