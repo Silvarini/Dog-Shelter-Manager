@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="493.0" maxWidth="721.0" minHeight="493.0" minWidth="721.0" prefHeight="493.0" prefWidth="721.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b5b5b5" height="78.0" layoutX="39.0" layoutY="25.0" stroke="BLACK" strokeType="INSIDE" width="82.0" />
+      <Text layoutX="135.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name :" wrappingWidth="62.13671875">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Text layoutX="135.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID Card :" wrappingWidth="82.13671875">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Text layoutX="135.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender :" wrappingWidth="82.13671875">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Text layoutX="49.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adoption Requests :" wrappingWidth="245.3367156982422">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <TableView layoutX="39.0" layoutY="145.0" prefHeight="323.0" prefWidth="644.0">
+        <columns>
+          <TableColumn prefWidth="147.19995498657227" text="Name" />
+          <TableColumn prefWidth="128.80003356933594" text="Contact" />
+          <TableColumn prefWidth="214.4000244140625" text="Email" />
+          <TableColumn prefWidth="63.99993896484375" text="DogID" />         
+          <TableColumn prefWidth="92.800048828125" text="State" />
+          
+        </columns>
+      </TableView>
+   </children>
+</Pane>

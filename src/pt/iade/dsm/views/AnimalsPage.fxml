@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="493.0" maxWidth="721.0" minHeight="493.0" minWidth="721.0" prefHeight="493.0" prefWidth="721.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextField layoutX="21.0" layoutY="45.0" prefHeight="36.0" prefWidth="614.0" promptText="Search" />
+      <TableView layoutX="24.0" layoutY="100.0" prefHeight="356.0" prefWidth="679.0">
+        <columns>
+          <TableColumn prefWidth="215.19995498657227" text="Name" />
+          <TableColumn prefWidth="228.7999725341797" text="Breed" />
+          <TableColumn prefWidth="165.5999755859375" text="Gender" />
+          <TableColumn prefWidth="74.39990234375" text="Age" />
+          
+        </columns>
+      </TableView>
+   </children>
+</Pane>
