@@ -8,7 +8,7 @@
 <Pane maxHeight="167.0" maxWidth="456.0" minHeight="167.0" minWidth="456.0" prefHeight="167.0" prefWidth="456.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Text layoutX="15.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Request : Bob Jones | 978256031 | bob.jones@email.com" wrappingWidth="426.13671875" />
-      <Text layoutX="15.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dog : Cheddar | Corgi | ID #10-05-2019-001" wrappingWidth="426.13671875" />
+      <Text layoutX="15.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dog : Cheddar | Corgi | ID #0005" wrappingWidth="426.13671875" />
       <Text layoutX="14.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bob: I have two female dogs." wrappingWidth="417.33673095703125" />
       <Text layoutX="225.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mark request as:" />
       <ChoiceBox fx:id="adoptionLV" layoutX="321.0" layoutY="71.0" prefHeight="25.0" prefWidth="120.0" />
