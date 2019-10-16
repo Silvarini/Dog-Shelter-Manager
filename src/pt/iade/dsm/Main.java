@@ -15,7 +15,6 @@ public class Main extends Application {
 			FXMLLoader loader = new FXMLLoader(
 					Main.class.getResource("views/LandingPage.fxml"));
 			/*loader.setController(
-					
 					);*/
 			Parent root = loader.load();
 			Scene scene = new Scene(root);
