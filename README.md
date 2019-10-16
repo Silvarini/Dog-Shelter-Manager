@@ -12,12 +12,12 @@
 
 
 ## GUI
-![](GUI/LandingPageDone.png)
-![](GUI/EmployeeDone.png)
-![](GUI/AddDogDone.png)
-![](GUI/AnimalsPageDone.png)
+![](GUI/LandingPage.png)
+![](GUI/Employee.png)
+![](GUI/AddDog.png)
+![](GUI/AnimalsPage.png)
 ![](GUI/AnimalProfile.png)
-![](GUI/AdoptionPopUpDone.png)
+![](GUI/AdoptionPopUp.png)
 ![](GUI/AdoptionConfirmation.PNG)
 
 
