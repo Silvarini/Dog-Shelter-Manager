@@ -54,7 +54,7 @@ Doação
 	
 	
 ## Diagramas
-![](GUI/Diagrama ER.jpeg)
+![](GUI/DiagramaER.jpeg)
 
 
 
