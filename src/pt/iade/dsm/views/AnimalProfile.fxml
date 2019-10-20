@@ -25,5 +25,6 @@
          </font>
       </Text>
       <Text layoutX="111.0" layoutY="389.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Need Experienced Adopter   Has Special Needs" wrappingWidth="496.5366668701172" />
+      <Button layoutX="565.0" layoutY="27.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="100.0" text="Change Profile" />
    </children>
 </Pane>
