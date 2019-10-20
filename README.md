@@ -7,8 +7,7 @@
 * [GUI](#GUI)
 * [Enquadramento](#Enquadramento)
 * [Cenários](#Cenários)
-* [Diagrama de ER](#Diagrama de ER)
-* [Diagrama de Classe](#Diagrama de Classes)
+* [Diagramas](#Diagramas)
 * [Referências](#Referências)	
 	 
 
@@ -54,10 +53,8 @@ Doação
 	
 	
 	
-##Diagrama de ER
+## Diagramas
 ![](GUI/Diagrama ER.jpeg)
-
-##Diagrma de Classes
 
 
 
