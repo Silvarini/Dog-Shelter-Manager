@@ -45,10 +45,10 @@ O funcionário para adicionar um cão, tem que clicar num botão que se encontra
 * Funcionalidades futuras:
 	Como funcionalidades futuras, vamos ter na Landing Page mais 2 duas opções, Volunteers e Donations.
 
-Voluntários
+Voluntários<br>
 	Nesta opção o utilizador visitante será redirecionado para uma página com um horário interativo, onde poderá selecionar o dia da semana onde deseja voluntariar, cada dia tem o turno da manhã e noite, Morning and Night, isto que permite maior flexiblidade para o utilizador. Ao escolher o dia e o turno, o visitante tem de completar um formulário onde insere o nome, email e telefone, e ainda uma ChoiceBox onde pode escolher o tipo de ajuda como por exemplo passear cães, ajudar na limpeza do abrigo, higienizar os animais, etc. Após tudo completado a opção de submit fica disponível e assim o visitante reservou um lugar para ajudar o abrigo.
 
-Doação
+Doação<br>
 	Na opção de Donations, o utilizador vai ser redirecionado para um página com dois tipos de planos, um plano de pagamento único e um plano de pagamento mensal, após escolher o tipo de pagamento, o utilizador poderá clicar num botão com valores já definidos ou escrever o valor que deseja doar, e tal como nos outros o formulário com nome, email e telefone, mas que neste caso serão opcioninais, caso o doador deseje ser anónimo, e uma última opção onde digita o seu cartão.
 	
 	
