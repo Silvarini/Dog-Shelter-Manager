@@ -58,10 +58,11 @@ Doação<br>
 
 
 ## Referências
+Petfinder é um site que permite procurar por animais abandonados na sua base de dados, também é apoiada por abrigos e organizações de adoção. O Dog Shelter Manager é um sistema de gestão de dados de um abrigo só, o que permite maior controlo do abrigo para com o software, permite o abrigo ter controlo de todos os dados, assim usá-los para campanhas ou ideias que possam ajudar a salvar mais animais, e personalização do sistema. Usamos alguns dados do Petfinder e do Adoptapet de caracterização para o perfil dos cães.
+
 (2019). Animal Shelters & Rescues for Pet Adoption. Acedido em: 05/10/2019, em: www.petfinder.com.
 
 (2019). Adopt the Perfect Pet. Acedido em: 05/10/2019, em: www.adoptapet.com.
-
 
 
 
