@@ -4,27 +4,19 @@
 	Bernardo - 50039481
 	
 ## Table of contents
-* [GUI](#GUI)
+
 * [Enquadramento](#Enquadramento)
 * [Cenários](#Cenários)
+* [GUI](#GUI)
 * [Diagramas](#Diagramas)
 * [Referências](#Referências)	
 	 
-
-
-## GUI
-![](GUI/LandingPage.png)
-![](GUI/Employee.png)
-![](GUI/AddDog.png)
-![](GUI/AnimalsPage.png)
-![](GUI/AnimalProfile.png)
-![](GUI/AdoptionPopUp.png)
-![](GUI/AdoptionConfirmation.PNG)
-
-
 ## Enquadramento
 	
 O Dog Shelter Manager é uma plataforma que tem como objetivo facilitar a interação utilizador/abrigo e aperfeiçoar  gerenciamento do abrigo tornando-o mais eficiente. Nesta plataforma a administração do abrigo tem acesso à ferramentas para agilizar o processo de registro e controlo de cães no abrigo, administrar pedidos de doação e gerencia dos funcionários, já os utilizadores têm acesso à ficha de cães que se encontram no abrigo, fazer adoações e doações.
+
+
+
 
 ## Cenários
 * Principal:
@@ -48,8 +40,21 @@ Voluntários<br>
 	Nesta opção o utilizador visitante será redirecionado para uma página com um horário interativo, onde poderá selecionar o dia da semana onde deseja voluntariar, cada dia tem o turno da manhã e noite, Morning and Night, isto que permite maior flexiblidade para o utilizador. Ao escolher o dia e o turno, o visitante tem de completar um formulário onde insere o nome, email e telefone, e ainda uma ChoiceBox onde pode escolher o tipo de ajuda como por exemplo passear cães, ajudar na limpeza do abrigo, higienizar os animais, etc. Após tudo completado a opção de submit fica disponível e assim o visitante reservou um lugar para ajudar o abrigo.<br>
 Doação<br>
 	Na opção de Donations, o utilizador vai ser redirecionado para um página com dois tipos de planos, um plano de pagamento único e um plano de pagamento mensal, após escolher o tipo de pagamento, o utilizador poderá clicar num botão com valores já definidos ou escrever o valor que deseja doar, e tal como nos outros o formulário com nome, email e telefone, mas que neste caso serão opcioninais, caso o doador deseje ser anónimo, e uma última opção onde digita o seu cartão.
-	
-	
+
+
+
+
+## GUI
+![](GUI/LandingPage.png)
+![](GUI/Employee.png)
+![](GUI/AddDog.png)
+![](GUI/AnimalsPage.png)
+![](GUI/AnimalProfile.png)
+![](GUI/AdoptionPopUp.png)
+![](GUI/AdoptionConfirmation.PNG)
+
+
+
 	
 ## Diagramas
 ![](GUI/DiagramaER.jpeg)
