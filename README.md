@@ -13,7 +13,9 @@
 	 
 ## Enquadramento
 	
-O Dog Shelter Manager é uma plataforma que tem como objetivo facilitar a interação utilizador/abrigo e aperfeiçoar  gerenciamento do abrigo tornando-o mais eficiente. Nesta plataforma a administração do abrigo tem acesso à ferramentas para agilizar o processo de registro e controlo de cães no abrigo, administrar pedidos de doação e gerencia dos funcionários, já os utilizadores têm acesso à ficha de cães que se encontram no abrigo, fazer adoações e doações.
+  O Dog Shelter Manager é uma plataforma que tem como objetivo facilitar a interação utilizador/abrigo e aperfeiçõar  o gerenciamento do abrigo tornando-o mais eficiente. Nesta plataforma a administração do abrigo tem acesso à ferramentas para agilizar o processo de registro e controlo de cães no abrigo, administrar pedidos de doação e gerencia dos funcionários, os funcionários têm acesso aos perfis dos cães, com a opção de mudar a informação, à lista de pedidos de adoção e podem criar perfis novos, e os utilizadores têm acesso à ficha de cães que se encontram no abrigo e fazer adoações. 
+Após um estudo de mercado podemos concluir que existem websites que promovem este sistema de adoção à distância tais como:
+Petfinder e Adoptapet, e muitos outros serviços semelhantes, são websites que permitem procurar por animais abandonados na sua base de dados, e com isso, tomar a decisão de adotar. Também são apoiadas por abrigos e organizações de adoção. A Dog Shelter Manager não faz concorrência direta com estes serviços, pelo contrário, o nosso sistema é focado na gestão de dados de um abrigo só, o que permite maior controlo do abrigo para com o software, levando assim a maior controlo de todos os dados para serem usados em campanhas ou ideias que possam ajudar a salvar mais animais e à personalização do sistema.
 
 
 
@@ -63,8 +65,6 @@ Doação<br>
 
 
 ## Referências
-Petfinder é um site que permite procurar por animais abandonados na sua base de dados, também é apoiada por abrigos e organizações de adoção. O Dog Shelter Manager é um sistema de gestão de dados de um abrigo só, o que permite maior controlo do abrigo para com o software, permite o abrigo ter controlo de todos os dados, assim usá-los para campanhas ou ideias que possam ajudar a salvar mais animais, e personalização do sistema. Usamos alguns dados do Petfinder e do Adoptapet de caracterização para o perfil dos cães.
-
 (2019). Animal Shelters & Rescues for Pet Adoption. Acedido em: 05/10/2019, em: www.petfinder.com.
 
 (2019). Adopt the Perfect Pet. Acedido em: 05/10/2019, em: www.adoptapet.com.
