@@ -59,7 +59,7 @@ Doação<br>
 
 	
 ## Diagramas
-![](GUI/DiagramaER.jpeg)
+![](DiagramaER.jpeg)
 ![](DiagramaClass.PNG)
 
 
