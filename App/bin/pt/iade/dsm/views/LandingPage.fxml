@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="493.0" maxWidth="721.0" minHeight="493.0" minWidth="721.0" prefHeight="493.0" prefWidth="721.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button layoutX="59.0" layoutY="296.0" mnemonicParsing="false" onAction="#onAnimalsPushed" prefHeight="99.0" prefWidth="149.0" text="Animals" />
+      <Button layoutX="286.0" layoutY="296.0" mnemonicParsing="false" onAction="#onVolunteersPushed" prefHeight="99.0" prefWidth="149.0" text="Volunteers" />
+      <Button layoutX="512.0" layoutY="296.0" mnemonicParsing="false" onAction="#onDonationsPushed" prefHeight="99.0" prefWidth="149.0" text="Donations" />
+      <Text layoutX="236.0" layoutY="55.0" opacity="0.39" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Dog Shelter " textAlignment="CENTER" wrappingWidth="248.93682861328125">
+         <font>
+            <Font size="38.0" />
+         </font>
+      </Text>
+      <Label layoutX="59.0" layoutY="263.0" text="Select a category:" />
+      <Label layoutX="348.0" layoutY="440.0" onMouseClicked="#onStaffClicked" text="Staff" underline="true" />
+      <ImageView fx:id="logoIV" fitHeight="138.0" fitWidth="188.0" layoutX="263.0" layoutY="124.0">
+         <image>
+            <Image url="@../images/DSM%20logo.jpeg" />
+         </image>
+      </ImageView>
+   </children>
+</Pane>
