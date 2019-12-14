@@ -12,8 +12,18 @@ import javafx.collections.ObservableList;
 import pt.iade.dsm.models.Dog;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class DogDAO.
+ */
 public class DogDAO {
 
+	/**
+	 * Insert dog into DB.
+	 *
+	 * @param dog the dog
+	 * @throws SQLException the SQL exception
+	 */
 	public static void insertDogIntoDB(Dog dog) throws SQLException
 	{	
 	    Connection conn = DBConnector.getConnection();
@@ -58,6 +68,12 @@ public class DogDAO {
 	}
 	
 	
+	/**
+	 * Load dogs.
+	 *
+	 * @return the observable list
+	 * @throws SQLException the SQL exception
+	 */
 	public static ObservableList<Dog> loadDogs() throws SQLException{
 
 		Connection conn = DBConnector.getConnection();
@@ -108,6 +124,13 @@ public class DogDAO {
 	}
 		return dogs;
 }
+	
+	/**
+	 * Change dog state.
+	 *
+	 * @param dog the dog
+	 * @throws SQLException the SQL exception
+	 */
 	public static void changeDogState (Dog dog) throws SQLException {
 		
 		Connection conn = DBConnector.getConnection();
@@ -143,6 +166,13 @@ public class DogDAO {
 		
 	}
 
+	/**
+	 * Gets the specific dog.
+	 *
+	 * @param dog the dog
+	 * @return the specific dog
+	 * @throws SQLException the SQL exception
+	 */
 	public static Dog getSpecificDog(Dog dog) throws SQLException{
 
 		Connection conn = DBConnector.getConnection();

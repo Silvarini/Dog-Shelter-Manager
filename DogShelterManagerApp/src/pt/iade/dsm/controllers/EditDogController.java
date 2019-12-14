@@ -11,6 +11,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 
+
+
+
+/*
+ * This class is still in development...
+ * 
+ * */
+
 public class EditDogController implements Initializable {
 	
 	@FXML

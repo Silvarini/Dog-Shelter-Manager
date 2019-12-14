@@ -10,9 +10,19 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import pt.iade.dsm.models.Guest;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class GuestDAO.
+ */
 public class GuestDAO {
 
 
+	/**
+	 * Insert guest DB.
+	 *
+	 * @param guest the guest
+	 * @throws SQLException the SQL exception
+	 */
 	public static void insertGuestDB(Guest guest) throws SQLException {
 		 	Connection conn = DBConnector.getConnection();
 	        PreparedStatement preparedStatement = null;
@@ -53,6 +63,12 @@ public class GuestDAO {
 		
 	}
 	
+	/**
+	 * Load guest.
+	 *
+	 * @return the observable list
+	 * @throws SQLException the SQL exception
+	 */
 	public static ObservableList<Guest> loadGuest() throws SQLException {
 		 Connection conn = DBConnector.getConnection();
 	     Statement statement = null;

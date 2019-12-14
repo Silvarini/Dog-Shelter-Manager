@@ -21,48 +21,54 @@ import pt.iade.dsm.models.Dog;
 import pt.iade.dsm.models.Guest;
 import pt.iade.dsm.models.State;
 
-public class AdoptionDecisionController implements Initializable{
+/**
+ * This class is the controller for the adoption pop up on the employee's page 
+ * where the information and the behavior of the interface get manipulated.
+ */
 
+
+public class AdoptionDecisionController implements Initializable{
+	/*Observation TextBox*/
 	@FXML
     private Text obsL;
-
+	/*The employee's decision ComboBox*/
     @FXML
     private ComboBox<String> decisionCB;
-
+    /*Informations about the guest*/
     @FXML
     private Label guestInfoL;
-
+    /*The details about the dog*/
     @FXML
     private Label dogDetailsL;
-    
+    /*Submit results Button*/
     @FXML
     private Label submitL;
     
-    
+    /*The guest that requested the adoption */
     private Guest guestC = null; 
     
-    
+    /*Dog that the guest wants to adopt*/
     private Dog dogC = null;
     
-    
+    /*The new state of the dog after employee's decision*/
     private State newState = null;
     
-    
+    /*Gets the adoption values from EmlpoyeePageController */
     private Adoption selectedAdoption = EmployeePageController.getAdoption();
 
        
     
-
+    /*Opens the dog's profile*/
     @FXML
     void onDogProfilePushed(ActionEvent event) {
     	PopUpDisplayer.showPopupWindow("views/DogProfile.fxml", new DogProfileController());
     }
-
+    /*This Button sets the values from the decision*/
     @FXML
     void onOkPushed(ActionEvent event) throws SQLException {
     	selectedAdoption.setState(decisionCB.getValue());
     	
-    	
+    	/*Condition thats sets the dog's state into adopted, if true.*/
     	if(selectedAdoption.getState().equals("accepted")) {
     		dogC.setState("adopted");
     		
@@ -87,7 +93,10 @@ public class AdoptionDecisionController implements Initializable{
     	//PhoneMessage.sendMsg(guestC.getPhone());
     } 
         
-        
+    /*This method gets the values needed from guest and dog for the interface.
+     * 
+     * Gives values to the page's elements.
+     * */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		decisionCB.getItems().add("accepted");

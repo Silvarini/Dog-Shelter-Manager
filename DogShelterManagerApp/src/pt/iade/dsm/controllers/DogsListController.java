@@ -19,31 +19,50 @@ import javafx.scene.input.MouseEvent;
 import pt.iade.dsm.models.Dog;
 import pt.iade.dsm.DAO.DogDAO;
 
+/**
+ * This class is the controller for the dog list page 
+ * where the dogs that are available for adoption are showed. 
+ * */
 public class DogsListController implements Initializable{
 
+	/** The table dog. */
 	@FXML
 	private TableView<Dog> tableDog;
 
+	/** The name column. */
 	@FXML
 	private TableColumn<Dog, String> nameColumn;
 
+	/** The breed column. */
 	@FXML
 	private TableColumn<Dog, String> breedColumn;
 
+	/** The gender column. */
 	@FXML
 	private TableColumn<Dog, String> genderColumn;
 
+	/** The age column. */
 	@FXML
 	private TableColumn<Dog, String> ageColumn;
 	
+	/** The filter of results.
+	 * Still in development.
+	 */
 	@FXML
     private TextField filter;
 	
 	//private ObservableList<Dog> masterData = FXCollections.observableArrayList();
     
+	/** The dog. */
 	private static Dog dog;
 
 
+	/**
+	 * This method reads the user's selection from table to open the dog's profile,.
+	 *
+	 * @param event the event
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	@FXML
 	void dogSelected(MouseEvent event) throws IOException {
 		 setDog(tableDog.getSelectionModel().getSelectedItem());
@@ -51,11 +70,17 @@ public class DogsListController implements Initializable{
 	}
 		
 
+	/**
+	 * This method returns the page into the Landing page, when the logo gets clicked.
+	 *
+	 * @param event the event
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	@FXML
     void onLogoClicked(MouseEvent event) throws IOException {
 		SceneChanger.openWindow("views/LandingPage.fxml",new LandingPageController(), event);
     }
-	
+
 /*	
 	public void DogTable() {
 		try {
@@ -65,7 +90,14 @@ public class DogsListController implements Initializable{
 		}
 	}
 	
-*/
+*/	
+	
+	/**
+	 * This method sets all values to the columns of the table.
+	 *
+	 * @param location the location
+	 * @param resources the resources
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		nameColumn.setCellValueFactory(new PropertyValueFactory<Dog, String>("name"));
@@ -119,11 +151,21 @@ public class DogsListController implements Initializable{
 	}
 
 
+	/**
+	 * Gets the dog.
+	 *
+	 * @return the dog
+	 */
 	public static Dog getDog() {
 		return dog;
 	}
 
 
+	/**
+	 * Sets the dog.
+	 *
+	 * @param dog the new dog
+	 */
 	public static void setDog(Dog dog) {
 		DogsListController.dog = dog;
 	}

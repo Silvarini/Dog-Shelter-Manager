@@ -13,11 +13,21 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import pt.iade.dsm.models.Employee;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class EmployeeDAO.
+ */
 public class EmployeeDAO {
 
 
 
 
+	/**
+	 * Insert employee into DB.
+	 *
+	 * @param employee the employee
+	 * @throws SQLException the SQL exception
+	 */
 	public static void insertEmployeeIntoDB(Employee employee) throws SQLException
 	{
 		Connection conn = DBConnector.getConnection();
@@ -61,6 +71,13 @@ public class EmployeeDAO {
 	}
 
 
+	/**
+	 * Load employees.
+	 *
+	 * @return the observable list
+	 * @throws SQLException the SQL exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public static ObservableList<Employee> loadEmployees() throws SQLException, IOException {
 
 		Connection conn = DBConnector.getConnection();
@@ -100,6 +117,15 @@ public class EmployeeDAO {
 
 
 	
+	/**
+	 * Verify login.
+	 *
+	 * @param username the username
+	 * @param password the password
+	 * @param employee the employee
+	 * @return the employee
+	 * @throws SQLException the SQL exception
+	 */
 	public static Employee VerifyLogin(String username, String password, Employee employee) throws SQLException {
 		
 		Connection conn = DBConnector.getConnection();

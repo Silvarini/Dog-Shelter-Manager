@@ -11,17 +11,47 @@ import java.time.LocalDate;
 import java.time.Period;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Employee.
+ */
 public class Employee {
 		
+		/** The employee ID. */
 		private int employeeID;
+		
+		/** The Name. */
 		private String  Name;
+		
+		/** The username. */
 		private String username;
+		
+		/** The password. */
 		private String password;
+		
+		/** The gender. */
 		private String gender;
+		
+		/** The pos held. */
 		private String pos_held;
+		
+		/** The birthdate. */
 		private LocalDate birthdate;
+		
+		/** The photo. */
 		private File photo;
 			
+			/**
+			 * Instantiates a new employee.
+			 *
+			 * @param name the name
+			 * @param username the username
+			 * @param password the password
+			 * @param gender the gender
+			 * @param birthdate the birthdate
+			 * @param pos_held the pos held
+			 * @throws IOException Signals that an I/O exception has occurred.
+			 */
 			public Employee(String name, String username, String password, String gender,
 							LocalDate birthdate, String pos_held) throws IOException {
 				
@@ -35,6 +65,18 @@ public class Employee {
 				
 			}
 			
+			/**
+			 * Instantiates a new employee.
+			 *
+			 * @param name the name
+			 * @param username the username
+			 * @param password the password
+			 * @param gender the gender
+			 * @param birthdate the birthdate
+			 * @param pos_held the pos held
+			 * @param photo the photo
+			 * @throws IOException Signals that an I/O exception has occurred.
+			 */
 			public Employee(String name, String username, String password, String gender,
 							LocalDate birthdate, String pos_held, File photo) throws IOException {
 				
@@ -43,19 +85,39 @@ public class Employee {
 				copyImageFile();
 			}
 
+			/**
+			 * Gets the employee ID.
+			 *
+			 * @return the employee ID
+			 */
 			public int getEmployeeID() {
 				return employeeID;
 			}
 
+			/**
+			 * Sets the employee ID.
+			 *
+			 * @param employeeID the new employee ID
+			 */
 			public void setEmployeeID(int employeeID) {
 				this.employeeID = employeeID;
 			}
 
 
+			/**
+			 * Gets the name.
+			 *
+			 * @return the name
+			 */
 			public String getName() {
 				return Name;
 			}
 
+			/**
+			 * Sets the name.
+			 *
+			 * @param name the new name
+			 */
 			public void setName(String name) {
 				if(name.length()>50)
 					throw new IllegalArgumentException("The name is too big.");
@@ -63,10 +125,20 @@ public class Employee {
 				this.Name = name;
 			}
 
+			/**
+			 * Gets the username.
+			 *
+			 * @return the username
+			 */
 			public String getUsername() {
 				return username;
 			}
 
+			/**
+			 * Sets the username.
+			 *
+			 * @param username the new username
+			 */
 			public void setUsername(String username) {
 				if(username.length()<8 || username.length()>15)
 					throw new IllegalArgumentException("The username must be between 8-15 characteres.");
@@ -74,11 +146,21 @@ public class Employee {
 					this.username = username;
 			}
 			
+			/**
+			 * Gets the password.
+			 *
+			 * @return the password
+			 */
 			public String getPassword() {
 				return password;
 			}
 			
 			
+			/**
+			 * Sets the password.
+			 *
+			 * @param password the new password
+			 */
 			/*
 			 * This method ensures that the password length is between 8-15 characters.
 			 */
@@ -89,19 +171,39 @@ public class Employee {
 				    this.password = password;
 			}
 
+			/**
+			 * Gets the gender.
+			 *
+			 * @return the gender
+			 */
 			public String getGender() {
 				return gender;
 			}
 
+			/**
+			 * Sets the gender.
+			 *
+			 * @param gender the new gender
+			 */
 			public void setGender(String gender) {
 				this.gender = gender;
 			}
 
+			/**
+			 * Gets the birthdate.
+			 *
+			 * @return the birthdate
+			 */
 			public LocalDate getBirthdate() {
 				
 				return birthdate;
 			}
 			
+			/**
+			 * Sets the birthdate.
+			 *
+			 * @param birthdate the new birthdate
+			 */
 			/*
 			 * This method certificates that the employee is at least 18yrs old.
 			 */
@@ -115,23 +217,48 @@ public class Employee {
 				
 			}
 
+			/**
+			 * Gets the photo.
+			 *
+			 * @return the photo
+			 */
 			public File getPhoto() {
 				return photo;
 			}
 
+			/**
+			 * Sets the photo.
+			 *
+			 * @param photo the new photo
+			 */
 			public void setPhoto(File photo) {
 				this.photo = photo;
 			}
 			
+			/**
+			 * Gets the pos held.
+			 *
+			 * @return the pos held
+			 */
 			public String getPos_held() {
 				return pos_held;
 			}
 
+			/**
+			 * Sets the pos held.
+			 *
+			 * @param pos_held the new pos held
+			 */
 			public void setPos_held(String pos_held) {
 				this.pos_held = pos_held;
 			}
 
 
+			/**
+			 * To string.
+			 *
+			 * @return the string
+			 */
 			public String toString () {
 				return String.format(" %s is a %s that has %d", Name, gender, Period.between(birthdate, LocalDate.now()).getYears());
 			}
@@ -140,6 +267,11 @@ public class Employee {
 			
 			
 			
+			/**
+			 * Copy image file.
+			 *
+			 * @throws IOException Signals that an I/O exception has occurred.
+			 */
 			public void copyImageFile() throws IOException
 		    {
 		        //create a new Path to copy the image into a local directory
@@ -155,6 +287,13 @@ public class Employee {
 		        //update the imageFile to point to the new File
 		        photo = new File(targetPath.toString());
 		    }
+			
+			/**
+			 * Gets the unique file name.
+			 *
+			 * @param oldFileName the old file name
+			 * @return the unique file name
+			 */
 			private String getUniqueFileName(String oldFileName)
 		    {
 		        String newName;
@@ -187,7 +326,13 @@ public class Employee {
 		    }
 		    
 		    
-		    /*
+		    /**
+    		 * Unique file in directory.
+    		 *
+    		 * @param fileName the file name
+    		 * @return true, if successful
+    		 */
+    		/*
 		     * This method will search the images directory and ensure that the file name
 		     * is unique
 		    */
@@ -205,7 +350,13 @@ public class Employee {
 		        return true;
 		    }
 		    
-		    /*
+		    /**
+    		 * Valid character value.
+    		 *
+    		 * @param asciiValue the ascii value
+    		 * @return true, if successful
+    		 */
+    		/*
 		     * This method will validate if the integer given corresponds to a valid
 		     * ASCII character that could be used in a file name
 		    */

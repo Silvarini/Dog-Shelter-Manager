@@ -12,6 +12,13 @@ import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
 
+/*
+ * 
+ * This class will send SMS to the guests about their adoption requests.
+ * This is still in development.
+ * 
+ * */
+
 public class PhoneMessage {
 	
 	  // Find your Account Sid and Token at twilio.com/user/account

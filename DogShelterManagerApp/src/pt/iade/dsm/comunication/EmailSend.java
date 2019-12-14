@@ -10,6 +10,13 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+/*
+ * 
+ * This class will be used to send emails to the guests about their adoption requests.
+ * This is still in development.
+ * 
+ * */
+
 public class EmailSend {
 
 	public static void sendEmail(String recipient, String state) {

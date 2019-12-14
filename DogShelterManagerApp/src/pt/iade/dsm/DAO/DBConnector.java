@@ -4,10 +4,19 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class DBConnector.
+ */
 public class DBConnector {
 	
+	/** The Constant URL. */
 	private static final String URL = "jdbc:mysql://remotemysql.com:3306/wlgrOv9kpn?useSSL=false";
+	
+	/** The Constant PASS. */
 	private static final String PASS = "5nskyFTijx";
+	
+	/** The Constant USER. */
 	private static final String USER = "wlgrOv9kpn";
 	
 	/*
@@ -16,9 +25,19 @@ public class DBConnector {
 	private static final String USER = "root";
 	*/
 	
+	/** The connector. */
 	private static Connection connector;
+	
+	/**
+	 * Instantiates a new DB connector.
+	 */
 	private DBConnector () {}
 	
+	/**
+	 * Gets the connection.
+	 *
+	 * @return the connection
+	 */
 	public static Connection getConnection() {
 		try {
 			if (connector == null ||

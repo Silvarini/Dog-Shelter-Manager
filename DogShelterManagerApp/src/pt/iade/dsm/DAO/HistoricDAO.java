@@ -10,8 +10,18 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import pt.iade.dsm.models.State;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class HistoricDAO.
+ */
 public class HistoricDAO {
 
+	/**
+	 * Insert state DB.
+	 *
+	 * @param state the state
+	 * @throws SQLException the SQL exception
+	 */
 	public static void insertStateDB(State state) throws SQLException {
 		Connection conn = DBConnector.getConnection();
         PreparedStatement preparedStatement = null;
@@ -47,6 +57,12 @@ public class HistoricDAO {
 		
 	}
 
+	/**
+	 * Load state.
+	 *
+	 * @return the observable list
+	 * @throws SQLException the SQL exception
+	 */
 	public static ObservableList<State> loadState() throws SQLException {
 		 Connection conn = DBConnector.getConnection();
 	     Statement statement = null;

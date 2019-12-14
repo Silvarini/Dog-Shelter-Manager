@@ -9,10 +9,20 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import pt.iade.dsm.Main;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PopUpDisplayer.
+ */
 public class PopUpDisplayer {
 	
 	
-	 public static void showPopupWindow(String view, Object controller) {
+	 /**
+ 	 * Show popup window.
+ 	 *
+ 	 * @param view the view
+ 	 * @param controller the controller
+ 	 */
+ 	public static void showPopupWindow(String view, Object controller) {
 
 	        FXMLLoader loader = new FXMLLoader();
 	        loader.setLocation(Main.class.getResource(view));

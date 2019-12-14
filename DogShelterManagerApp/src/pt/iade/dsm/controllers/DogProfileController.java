@@ -21,43 +21,72 @@ import pt.iade.dsm.models.Dog;
 
 
 
+/**
+ * This class is the controller for the dog's profile, 
+ * where the information and the behavior of the interface get manipulated.
+ */
 public class DogProfileController implements Initializable {
 
 	
 
+    /** The dog's name label. */
     @FXML
     private Label nameLabel;
 
+    /** The id label. */
     @FXML
     private Label idLabel;
 
+    /** The info label. */
     @FXML
     private Label infoLabel;
     
+    /** The lower info label. */
     @FXML
     private Label info2Label;
     
+    /** The Observations text area. */
     @FXML
     private TextArea OBStextArea;
 
+    /** The photo. */
     @FXML
     private ImageView photo;
     
+    /** The dog. */
     private Dog dog;
     
    
+    /**
+     * On back clicked, returns to Dog Page.
+     *
+     * @param event the event
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     @FXML
     void onBackClicked(MouseEvent event) throws IOException {
     	SceneChanger.openWindow("views/DogsPage.fxml", new DogsListController(), event);
     }
     
     
+    /**
+     * Adopt pushed, opens pop up for adoption request.
+     *
+     * @param event the event
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     @FXML
     void AdoptPushed(ActionEvent event) throws IOException {
     PopUpDisplayer.showPopupWindow("views/AdoptionPopUp.fxml",new AdoptionPopUpController());
     	
     }
 
+	/**
+	 * This method sets values to all elements from the profile.
+	 *
+	 * @param arg0 the arg 0
+	 * @param arg1 the arg 1
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		dog=DogsListController.getDog();
@@ -70,6 +99,7 @@ public class DogProfileController implements Initializable {
 		
 		OBStextArea.setText(dog.getObs());
 		
+		/*Directory and setup for the dog's image*/
 		 try{
 	            String imgLocation = "src/pt/iade/dsm/images/Dogs/" + DogsListController.getDog().getPhoto().getName();
 	            File imageFile = new File(imgLocation);

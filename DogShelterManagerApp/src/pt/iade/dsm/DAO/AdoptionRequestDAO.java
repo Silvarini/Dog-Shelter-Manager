@@ -11,8 +11,18 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import pt.iade.dsm.models.Adoption;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AdoptionRequestDAO.
+ */
 public class AdoptionRequestDAO {
 	
+	/**
+	 * Insert adoption request DB.
+	 *
+	 * @param adoption the adoption
+	 * @throws SQLException the SQL exception
+	 */
 	public static void insertAdoptionRequestDB(Adoption adoption) throws SQLException {
 		Connection conn = DBConnector.getConnection();
         PreparedStatement preparedStatement = null;
@@ -54,6 +64,12 @@ public class AdoptionRequestDAO {
 		
 	}
 
+	/**
+	 * Load adoption requests.
+	 *
+	 * @return the observable list
+	 * @throws SQLException the SQL exception
+	 */
 	public static ObservableList<Adoption> loadAdoptionRequests() throws SQLException {
 		 Connection conn = DBConnector.getConnection();
 	     Statement statement = null;
@@ -84,6 +100,12 @@ public class AdoptionRequestDAO {
 	
 }
 	
+	/**
+	 * Load adoption requests on hold.
+	 *
+	 * @return the observable list
+	 * @throws SQLException the SQL exception
+	 */
 	public static ObservableList<Adoption> loadAdoptionRequestsOnHold() throws SQLException {
 		 Connection conn = DBConnector.getConnection();
 	     Statement statement = null;
@@ -113,6 +135,13 @@ public class AdoptionRequestDAO {
 		return adoptions;
 	
 }
+	
+	/**
+	 * Decision upload.
+	 *
+	 * @param adoption the adoption
+	 * @throws SQLException the SQL exception
+	 */
 	public static void decisionUpload (Adoption adoption) throws SQLException {
 	
 	Connection conn = DBConnector.getConnection();
