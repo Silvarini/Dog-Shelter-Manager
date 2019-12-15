@@ -11,8 +11,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import pt.iade.dsm.models.Adoption;
 
+/**
+ * This class connects to the database getting and setting values for the adoption requests.
+ */
 public class AdoptionRequestDAO {
 	
+	/**
+	 * Insert adoption request values into the database.
+	 *
+	 * @param adoption the adoption
+	 * @throws SQLException the SQL exception
+	 */
 	public static void insertAdoptionRequestDB(Adoption adoption) throws SQLException {
 		Connection conn = DBConnector.getConnection();
         PreparedStatement preparedStatement = null;
@@ -54,6 +63,12 @@ public class AdoptionRequestDAO {
 		
 	}
 
+	/**
+	 * Load adoption requests from the database.
+	 *
+	 * @return the observable list
+	 * @throws SQLException the SQL exception
+	 */
 	public static ObservableList<Adoption> loadAdoptionRequests() throws SQLException {
 		 Connection conn = DBConnector.getConnection();
 	     Statement statement = null;
@@ -84,6 +99,12 @@ public class AdoptionRequestDAO {
 	
 }
 	
+	/**
+	 * Load adoption requests, where the requested's state is " on hold ".
+	 *
+	 * @return the observable list
+	 * @throws SQLException the SQL exception
+	 */
 	public static ObservableList<Adoption> loadAdoptionRequestsOnHold() throws SQLException {
 		 Connection conn = DBConnector.getConnection();
 	     Statement statement = null;
@@ -113,6 +134,13 @@ public class AdoptionRequestDAO {
 		return adoptions;
 	
 }
+	
+	/**
+	 * Updates the adoption request's state from the employee's decision.
+	 *
+	 * @param adoption the adoption
+	 * @throws SQLException the SQL exception
+	 */
 	public static void decisionUpload (Adoption adoption) throws SQLException {
 	
 	Connection conn = DBConnector.getConnection();

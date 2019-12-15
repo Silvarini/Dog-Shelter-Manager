@@ -25,54 +25,81 @@ import javafx.stage.Stage;
 import pt.iade.dsm.DAO.EmployeeDAO;
 import pt.iade.dsm.models.Employee;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class NewEmployeeController.
+ */
 public class NewEmployeeController implements Initializable {
 	
+    /** The username text field. */
     @FXML
     private TextField usernameTextField;
 
+    /** The password text field. */
     @FXML
     private PasswordField passwordTextField;
 
+    /** The confirm password text field. */
     @FXML
     private PasswordField confirmPasswordTextField;
 
+    /** The Birthdate. */
     @FXML
     private DatePicker Birthdate;
 
 
+    /** The Name text field. */
     @FXML
     private TextField NameTextField;
         
 
+	/** The Sex. */
 	@FXML
     private ChoiceBox<String> Sex;
     
    
+    /** The Role. */
     @FXML
     private ChoiceBox<String> Role;
     
     
+    /** The Photo view. */
     @FXML
     private ImageView PhotoView;
 
     
+    /** The error msg. */
     @FXML
     private Label errorMsg;
        
     
+    /** The image file. */
     private File imageFile;
+    
+    /** The image file changed. */
     boolean imageFileChanged;
     
     
   
     
     
+    /**
+     * On back clicked.
+     *
+     * @param event the event
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     @FXML
     void onBackClicked(MouseEvent event)  throws IOException{
     	SceneChanger.openWindow("views/AdminPage.fxml", new AdminPageController(), event);
     }
     
     
+    /**
+     * On save button pushed.
+     *
+     * @param event the event
+     */
     @FXML
     void onSaveButtonPushed(ActionEvent event) {
     	try {
@@ -96,6 +123,11 @@ public class NewEmployeeController implements Initializable {
     	
     }  
     
+    /**
+     * On upload photo pushed.
+     *
+     * @param event the event
+     */
     @FXML
     void onUploadPhotoPushed(ActionEvent event) {
        
@@ -148,6 +180,12 @@ public class NewEmployeeController implements Initializable {
         
     }
 
+	/**
+	 * Initialize.
+	 *
+	 * @param location the location
+	 * @param resources the resources
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
@@ -170,7 +208,7 @@ public class NewEmployeeController implements Initializable {
 		Sex.getItems().add("F");
 		
 		Role.getItems().add("Administrador");
-		Role.getItems().add("Funcionário");
+		Role.getItems().add("Funcionï¿½rio");
 		
 		errorMsg.setText("");
 		

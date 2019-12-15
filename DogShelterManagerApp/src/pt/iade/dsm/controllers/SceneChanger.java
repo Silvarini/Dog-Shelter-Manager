@@ -11,8 +11,20 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import pt.iade.dsm.Main;
 
+/**
+ * The Class SceneChanger.
+ * Code for scene changing.
+ */
 public class SceneChanger {
 
+	/**
+	 * Open window.
+	 *
+	 * @param viewPath the view path
+	 * @param controller the controller
+	 * @param event the event
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public static void openWindow(String viewPath, 
 			Object controller, MouseEvent event) throws IOException {
 			FXMLLoader loader = new FXMLLoader(
@@ -30,6 +42,14 @@ public class SceneChanger {
 
 }
 	
+	/**
+	 * Open window.
+	 *
+	 * @param viewPath the view path
+	 * @param controller the controller
+	 * @param event the event
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public static void openWindow(String viewPath, 
 			Object controller, ActionEvent event) throws IOException {
 			FXMLLoader loader = new FXMLLoader(

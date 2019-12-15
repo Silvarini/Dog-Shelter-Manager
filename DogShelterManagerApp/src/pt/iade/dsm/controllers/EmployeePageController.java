@@ -25,72 +25,111 @@ import pt.iade.dsm.DAO.DogDAO;
 import pt.iade.dsm.models.Adoption;
 import pt.iade.dsm.models.Dog;
 
-public class EmployeePageController implements Initializable{
+/**
+ * This class is the controller for the employee's page 
+ *  
+ * */ class EmployeePageController implements Initializable{
 
+    /** The employee name label. */
     @FXML
     private Label eNameLabel;
 
+    /** The employee ID label. */
     @FXML
     private Label eIDLabel;
 
+    /** The employee G label. */
     @FXML
     private Label eGLabel;
 
+    /** The employee photo. */
     @FXML
     private ImageView photo;
 
+    /** The table Adoption requests. */
     @FXML
     private TableView<Adoption> AdoptionRequests;
 
+    /** The id Adoption column. */
     @FXML
     private TableColumn<Adoption, String> idAColumn;
 
+    /** The guest column. */
     @FXML
     private TableColumn<Adoption, String> guestColumn;
 
+    /** The id dog column. */
     @FXML
     private TableColumn<Adoption, String> idDColumn;
 
+    /** The state adoption column. */
     @FXML
     private TableColumn<Adoption, String> stateAColumn;
 
+    /** The date column. */
     @FXML
     private TableColumn<Adoption, String> dateColumn;
 
 
+    /** The Dog. */
     @FXML
     private TableView<Dog> Dog;
 
+    /** The id column. */
     @FXML
     private TableColumn<Dog, String> idColumn;
 
+    /** The name dog column. */
     @FXML
     private TableColumn<Dog, String> nameDColumn;
 
+    /** The breed class column. */
     @FXML
     private TableColumn<Dog, String> breedCOlumnn;
 
+    /** The age column. */
     @FXML
     private TableColumn<Dog, String> ageColumn;
 
+    /** The state dog column. */
     @FXML
     private TableColumn<Dog, String> stateDColumn;
 
+    /** The adoption. */
     private static Adoption adoption;
     
     
+    /**
+     * This method return to the landing page.
+     *
+     * @param event the event
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     @FXML
     void logoutButton(ActionEvent event) throws IOException {
     	SceneChanger.openWindow("views/LandingPage.fxml", new LandingPageController(), event);
     }
     
     
+    /**
+     * This method opens the scene where a new dog gets created.
+     *
+     * @param event the event
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     @FXML
     void InsertDogPushed(ActionEvent event) throws IOException {
     	SceneChanger.openWindow("views/AddingDog.fxml", new NewDogController(), event);
 
     } 
         
+    /**
+     * This method opens the pop up where the employee changes the adoption state 
+     * from a selected adoption request from the table.
+     *
+     * @param event the event
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     @FXML
     void onAdoptionSelected(MouseEvent event) throws IOException {
     	setAdoption(AdoptionRequests.getSelectionModel().getSelectedItem());
@@ -113,6 +152,16 @@ public class EmployeePageController implements Initializable{
     
 
 
+	/**
+	 * Called to initialize a controller after its root element has been completely processed.
+	 * 
+	 * This method sets all value's directory for the table's cells and set the values that gets
+	 * from the DAO classes.
+	 * 
+	 *
+	 * @param location the location
+	 * @param resources the resources
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		eNameLabel.setText(LoginInController.getEmployee().getName());
@@ -162,11 +211,21 @@ public class EmployeePageController implements Initializable{
 	}
 
 
+	/**
+	 * Gets the adoption.
+	 *
+	 * @return the adoption
+	 */
 	public static Adoption getAdoption() {
 		return adoption;
 	}
 
 
+	/**
+	 * Sets the adoption.
+	 *
+	 * @param adoption the new adoption
+	 */
 	public void setAdoption(Adoption adoption) {
 		EmployeePageController.adoption = adoption;
 	}

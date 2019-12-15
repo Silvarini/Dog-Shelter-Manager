@@ -21,9 +21,10 @@ import pt.iade.dsm.models.Dog;
 import pt.iade.dsm.models.Employee;
 import pt.iade.dsm.models.State;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class AdminPageController.
+ * This class is the controller for the admin page 
+ * where the information and the behavior of the interface
+ * get manipulated.
  */
 public class AdminPageController implements Initializable{
 
@@ -55,15 +56,15 @@ public class AdminPageController implements Initializable{
     @FXML
     private TableColumn<Dog, String> sizeColumn;
 
-    /** The cl column. */
+    /** The coat length column. */
     @FXML
     private TableColumn<Dog, String> clColumn;
 
-    /** The gw column. */
+    /** The good with column. */
     @FXML
     private TableColumn<Dog, String> gwColumn;
     
-    /** The state. */
+    /** The state column. */
     @FXML
     private TableColumn<Dog, String> state;
     
@@ -74,31 +75,31 @@ public class AdminPageController implements Initializable{
     @FXML
     private TableView<Employee> tableEmployee;
 
-    /** The id E column. */
+    /** The id Employee column. */
     @FXML
     private TableColumn<Employee, String> idEColumn;
 
-    /** The name E column. */
+    /** The name Employee column. */
     @FXML
     private TableColumn<Employee, String> nameEColumn;
 
-    /** The birthdate E column. */
+    /** The birthdate Employee column. */
     @FXML
     private TableColumn<Employee, String> birthdateEColumn;
 
-    /** The ph column. */
+    /** The  column position held by the Employee */
     @FXML
     private TableColumn<Employee, String> phColumn;
 
-    /** The gender E column. */
+    /** The gender Employee column. */
     @FXML
     private TableColumn<Employee, String> genderEColumn;
 
-    /** The un column. */
+    /** The username column. */
     @FXML
     private TableColumn<Employee, String> unColumn;
 
-    /** The pw column. */
+    /** The password column. */
     @FXML
     private TableColumn<Employee, String> pwColumn;
 	
@@ -110,23 +111,23 @@ public class AdminPageController implements Initializable{
     @FXML
     private TableView<State> historicTable;
 
-    /** The id. */
+    /** The column id   */
     @FXML
     private TableColumn<State, String> id;
 
-    /** The state H. */
+    /** The column state of the Dog  */
     @FXML
     private TableColumn<State, String> stateH;
 
-    /** The id D. */
+    /** The column id Dog */
     @FXML
     private TableColumn<State, String> idD;
 
-    /** The id E. */
+    /** The id Employee */
     @FXML
     private TableColumn<State, String> idE;
 
-    /** The date H. */
+    /** The date of changes */
     @FXML
     private TableColumn<State, String> dateH;
     
@@ -134,27 +135,27 @@ public class AdminPageController implements Initializable{
     
     
     
-    /** The adoptions completed. */
+    /** The table adoptions completed. */
     @FXML
     private TableView<Adoption> adoptionsCompleted;
 
-    /** The adoption ID. */
+    /** The column adoption ID. */
     @FXML
     private TableColumn<Adoption, String> adoptionID;
 
-    /** The guest. */
+    /** The column guest. */
     @FXML
     private TableColumn<Adoption, String> guest;
 
-    /** The dog ID. */
+    /** The column dog ID. */
     @FXML
     private TableColumn<Adoption, String> dogID;
 
-    /** The adoption state. */
+    /** The column adoption state. */
     @FXML
     private TableColumn<Adoption, String> adoptionState;
 
-    /** The date. */
+    /** The column date. */
     @FXML
     private TableColumn<Adoption, String> date;
 
@@ -162,7 +163,7 @@ public class AdminPageController implements Initializable{
     
 	
     /**
-     * CN employee pushed.
+     * Button that opens employee creation page.
      *
      * @param event the event
      * @throws IOException Signals that an I/O exception has occurred.
@@ -173,7 +174,8 @@ public class AdminPageController implements Initializable{
     }
 
     /**
-     * Filter text.
+     * Filter results.
+     * Still in development.
      *
      * @param event the event
      */
@@ -183,7 +185,7 @@ public class AdminPageController implements Initializable{
     }
 
     /**
-     * Log out pushed.
+     * Button to Log out.
      *
      * @param event the event
      * @throws IOException Signals that an I/O exception has occurred.
@@ -193,7 +195,12 @@ public class AdminPageController implements Initializable{
     	SceneChanger.openWindow("views/LandingPage.fxml", new LandingPageController(), event);
     }
 
-	/* (non-Javadoc)
+	/* 
+	 * Called to initialize a controller after its root element has been completely processed.
+	 * 
+	 * This method sets all value's directory for the table's cells and set the values that gets
+	 * from the DAO classes.
+	 * 
 	 * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
 	 */
 	@Override

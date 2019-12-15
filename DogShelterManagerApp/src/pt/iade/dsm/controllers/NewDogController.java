@@ -30,52 +30,80 @@ import pt.iade.dsm.DAO.HistoricDAO;
 import pt.iade.dsm.models.Dog;
 import pt.iade.dsm.models.State;
 
+/**
+ * This is the controller for the new dog's scene.
+ */
 public class NewDogController implements Initializable{
 
+    /** The Dog name text field. */
     @FXML
     private TextField DogName_tf;
 
+    /** The dog breed choice box. */
     @FXML
     private ChoiceBox<String> dogBreed;
 
+    /** The dog gender choice box. */
     @FXML
     private ChoiceBox<String> dogGender;
 
+    /** The dog size choice box. */
     @FXML
     private ChoiceBox<String> dogSize;
 
+    /** The dog coat length choice box. */
     @FXML
     private ChoiceBox<String> dogCL;
 
+    /** The dog good with choice box. */
     @FXML
     private ChoiceBox<String> dogGw;
 
+    /** The dog age choice box. */
     @FXML
     private ChoiceBox<String> dogAge;
     
+    /** The Observation text field. */
     @FXML
     private TextField obsField;
     
+    /** The save info message. */
     @FXML
     private Label saveInfo;
     
+    /** The back page. */
     @FXML
     private Label backPage;
     
+    /** The image view. */
     @FXML
     private ImageView imageView;
     
+    /** The image file. */
     private File imageFile;
     
+    /** The image file changed. */
     boolean imageFileChanged;
         
     
+    /**
+     * This method changes scene into employee's page
+     *
+     * @param event the event
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     @FXML
     void onBackClicked(MouseEvent event) throws IOException {
     	SceneChanger.openWindow("views/EmployeePage.fxml", new EmployeePageController(), event);
     }
   
       
+    /**
+     * This method opens a pop up asking for confirmation.
+     * If Ok was pushed, all values are saved into database.
+     *
+     * @param event the event
+     */
     @FXML
     void SaveData(ActionEvent event)  {
     	    	
@@ -106,6 +134,11 @@ public class NewDogController implements Initializable{
     	}
     }
 
+    /**
+     * On upload photo.
+     *
+     * @param event the event
+     */
     @FXML
     void onUploadPhoto(ActionEvent event) {
     	//get the Stage to open a new window (or Stage in JavaFX)
@@ -156,6 +189,12 @@ public class NewDogController implements Initializable{
     }
     
     
+    /**
+     * Initialize.
+     *
+     * @param location the location
+     * @param resources the resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) { 	
     	

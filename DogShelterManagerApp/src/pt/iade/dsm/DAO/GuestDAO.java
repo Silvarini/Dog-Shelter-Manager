@@ -10,9 +10,18 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import pt.iade.dsm.models.Guest;
 
+/**
+ * This class connects to the database to set and get values from the guest's table.
+ */
 public class GuestDAO {
 
 
+	/**
+	 * Insert guest into database.
+	 *
+	 * @param guest the guest
+	 * @throws SQLException the SQL exception
+	 */
 	public static void insertGuestDB(Guest guest) throws SQLException {
 		 	Connection conn = DBConnector.getConnection();
 	        PreparedStatement preparedStatement = null;
@@ -53,6 +62,12 @@ public class GuestDAO {
 		
 	}
 	
+	/**
+	 * Load guest from database.
+	 *
+	 * @return the observable list
+	 * @throws SQLException the SQL exception
+	 */
 	public static ObservableList<Guest> loadGuest() throws SQLException {
 		 Connection conn = DBConnector.getConnection();
 	     Statement statement = null;

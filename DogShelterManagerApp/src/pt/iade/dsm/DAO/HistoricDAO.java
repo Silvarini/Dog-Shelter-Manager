@@ -10,8 +10,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import pt.iade.dsm.models.State;
 
+/**
+ * This class connects to the database to get and set values from the historic's table.
+ */
 public class HistoricDAO {
 
+	/**
+	 * Insert state into historic's database.
+	 *
+	 * @param state the state
+	 * @throws SQLException the SQL exception
+	 */
 	public static void insertStateDB(State state) throws SQLException {
 		Connection conn = DBConnector.getConnection();
         PreparedStatement preparedStatement = null;
@@ -47,6 +56,12 @@ public class HistoricDAO {
 		
 	}
 
+	/**
+	 * Load state form database.
+	 *
+	 * @return the observable list
+	 * @throws SQLException the SQL exception
+	 */
 	public static ObservableList<State> loadState() throws SQLException {
 		 Connection conn = DBConnector.getConnection();
 	     Statement statement = null;
