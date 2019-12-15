@@ -11,9 +11,8 @@ import java.security.SecureRandom;
 
 
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class Dog.
+ * This model represents the dog.
  */
 public class Dog {
 	
@@ -35,13 +34,13 @@ public class Dog {
 	/** The size. */
 	private String size;
 	
-	/** The coat. */
+	/** The coat length. */
 	private String coat;
 	
-	/** The goodw. */
+	/** The good with. */
 	private String goodw;
 	
-	/** The Obs. */
+	/** The Observation. */
 	private String Obs;
 	
 	/** The photo. */
@@ -229,9 +228,9 @@ public void setSize(String size) {
 
 
 /**
- * Gets the coat.
+ * Gets the coat length.
  *
- * @return the coat
+ * @return the coat 
  */
 public String getCoat() {
 	return coat;
@@ -240,7 +239,7 @@ public String getCoat() {
 
 
 /**
- * Sets the coat.
+ * Sets the coat length.
  *
  * @param coat the new coat
  */
@@ -251,7 +250,7 @@ public void setCoat(String coat) {
 
 
 /**
- * Gets the goodw.
+ * Gets the good with.
  *
  * @return the goodw
  */
@@ -262,7 +261,7 @@ public String getGoodw() {
 
 
 /**
- * Sets the goodw.
+ * Sets the good with.
  *
  * @param goodw the new goodw
  */
@@ -294,7 +293,7 @@ public void setPhoto(File photo) {
 
 
 /**
- * Gets the obs.
+ * Gets the observation.
  *
  * @return the obs
  */
@@ -303,7 +302,7 @@ public String getObs() {
 }
 
 /**
- * Sets the obs.
+ * Sets the observation.
  *
  * @param obs the new obs
  */

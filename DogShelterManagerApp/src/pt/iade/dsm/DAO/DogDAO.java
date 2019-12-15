@@ -12,14 +12,13 @@ import javafx.collections.ObservableList;
 import pt.iade.dsm.models.Dog;
 
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class DogDAO.
+ * This class inserts and gets values from dog's table from the database.
  */
 public class DogDAO {
 
 	/**
-	 * Insert dog into DB.
+	 * Insert dog into Database.
 	 *
 	 * @param dog the dog
 	 * @throws SQLException the SQL exception
@@ -69,7 +68,7 @@ public class DogDAO {
 	
 	
 	/**
-	 * Load dogs.
+	 * Loads values from dog's database.
 	 *
 	 * @return the observable list
 	 * @throws SQLException the SQL exception
@@ -112,7 +111,6 @@ public class DogDAO {
 	{
 		System.err.println(e);
 	}
-	
 		finally
 	{
 		if (conn != null)

@@ -3,9 +3,8 @@ package pt.iade.dsm.models;
 import java.time.LocalDate;
 
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class Adoption.
+ * This model represents the adoption process.
  */
 public class Adoption {
 	

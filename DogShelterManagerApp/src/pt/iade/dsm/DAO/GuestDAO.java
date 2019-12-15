@@ -10,15 +10,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import pt.iade.dsm.models.Guest;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class GuestDAO.
+ * This class connects to the database to set and get values from the guest's table.
  */
 public class GuestDAO {
 
 
 	/**
-	 * Insert guest DB.
+	 * Insert guest into database.
 	 *
 	 * @param guest the guest
 	 * @throws SQLException the SQL exception
@@ -64,7 +63,7 @@ public class GuestDAO {
 	}
 	
 	/**
-	 * Load guest.
+	 * Load guest from database.
 	 *
 	 * @return the observable list
 	 * @throws SQLException the SQL exception

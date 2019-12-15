@@ -4,9 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class DBConnector.
+ * Connection to the database code.
  */
 public class DBConnector {
 	
@@ -29,7 +28,7 @@ public class DBConnector {
 	private static Connection connector;
 	
 	/**
-	 * Instantiates a new DB connector.
+	 * Instantiates a new Database connector.
 	 */
 	private DBConnector () {}
 	

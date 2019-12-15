@@ -2,9 +2,8 @@ package pt.iade.dsm.models;
 
 import java.time.LocalDate;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class State.
+ * This model represents the states.
  */
 public class State {
 
@@ -21,7 +20,7 @@ public class State {
 	/** The initial date. */
 	private LocalDate initialDate;
 	
-	/** The id. */
+	/** The id of the state. */
 	private int id;
 	
 	
@@ -117,7 +116,7 @@ public class State {
 	}
 
 	/**
-	 * Gets the id.
+	 * Gets the state's id.
 	 *
 	 * @return the id
 	 */
@@ -128,7 +127,7 @@ public class State {
 
 
 	/**
-	 * Sets the id.
+	 * Sets the state's id.
 	 *
 	 * @param id the new id
 	 */

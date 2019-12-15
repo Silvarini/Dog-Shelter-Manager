@@ -5,9 +5,8 @@ import java.util.regex.Pattern;
 
 import com.sun.xml.internal.txw2.IllegalAnnotationException;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class Guest.
+ * This model represents the guest.
  */
 public class Guest {
 	
@@ -26,7 +25,7 @@ public class Guest {
 	/** The adress. */
 	private  String adress;
 	
-	/** The obs. */
+	/** The observation. */
 	private  String obs;
 	
 	
@@ -66,6 +65,8 @@ public class Guest {
 
 	/**
 	 * Sets the first name.
+	 * Condition only allows at least 15 characters
+	 *
 	 *
 	 * @param firstName the new first name
 	 */
@@ -197,7 +198,7 @@ public class Guest {
 
 
 	/**
-	 * Sets the obs.
+	 * Sets the obsservation.
 	 *
 	 * @param obs the new obs
 	 */

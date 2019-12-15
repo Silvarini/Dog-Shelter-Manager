@@ -13,9 +13,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import pt.iade.dsm.models.Employee;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class EmployeeDAO.
+ * This class inserts and gets values from employee's table in the database.
  */
 public class EmployeeDAO {
 

@@ -11,9 +11,8 @@ import java.time.LocalDate;
 import java.time.Period;
 
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class Employee.
+ * This model represents the employee.
  */
 public class Employee {
 		
@@ -32,7 +31,7 @@ public class Employee {
 		/** The gender. */
 		private String gender;
 		
-		/** The pos held. */
+		/** The position held. */
 		private String pos_held;
 		
 		/** The birthdate. */
@@ -236,7 +235,7 @@ public class Employee {
 			}
 			
 			/**
-			 * Gets the pos held.
+			 * Gets the position held.
 			 *
 			 * @return the pos held
 			 */
@@ -245,7 +244,7 @@ public class Employee {
 			}
 
 			/**
-			 * Sets the pos held.
+			 * Sets the position held.
 			 *
 			 * @param pos_held the new pos held
 			 */
