@@ -14,7 +14,7 @@ import pt.iade.dsm.DAO.AdoptionRequestDAO;
 import pt.iade.dsm.DAO.DogDAO;
 import pt.iade.dsm.DAO.GuestDAO;
 import pt.iade.dsm.DAO.HistoricDAO;
-import pt.iade.dsm.comunication.EmailSend;
+import pt.iade.dsm.communication.EmailSend;
 //import pt.iade.dsm.comunication.PhoneMessage;
 import pt.iade.dsm.models.Adoption;
 import pt.iade.dsm.models.Dog;
