@@ -1,4 +1,4 @@
-package pt.iade.dsm.comunication;
+package pt.iade.dsm.communication;
 
 import java.util.Properties;
 
