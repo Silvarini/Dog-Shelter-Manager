@@ -216,6 +216,11 @@ public class NewDogController implements Initializable{
     
     	saveInfo.setText("");
     	
+    	/*
+    	 * Setting values for the goodWith, age, breed, size, gender and coatLength.
+    	 * 
+    	 * */
+    	
     	String gw[] = {"Dogs","Kids","All Species","None","Birds","Cats"};
     	dogGw.getItems().addAll(gw);
 		

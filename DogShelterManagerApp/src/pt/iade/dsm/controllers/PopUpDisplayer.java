@@ -9,9 +9,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import pt.iade.dsm.Main;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class PopUpDisplayer.
+ * The code for the pop ups.
  */
 public class PopUpDisplayer {
 	
