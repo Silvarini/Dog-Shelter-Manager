@@ -34,7 +34,6 @@ public class LandingPageController {
      *
      * @param event the event
      * @throws IOException Signals that an I/O exception has occurred.
-     * @throws NexmoClientException the nexmo client exception
      */
     @FXML
     void onDonationsPushed(ActionEvent event) throws IOException {
