@@ -1,13 +1,7 @@
 package pt.iade.dsm.communication;
 
-import java.io.IOException;
 
 
-import com.nexmo.client.NexmoClient;
-import com.nexmo.client.NexmoClientException;
-import com.nexmo.client.sms.SmsSubmissionResponse;
-import com.nexmo.client.sms.SmsSubmissionResponseMessage;
-import com.nexmo.client.sms.messages.TextMessage;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
@@ -25,7 +19,6 @@ public class PhoneMessage {
 	  public static final String ACCOUNT_SID = "AC75c630888bf429454f670697283a3124";
 	  public static final String AUTH_TOKEN = "aa75b4bfb7efc86d6f59bcd13f3bbc4c";
 
-	  private static String messageText=null;
 	  
 	  
 	  public static void sendMsg(String phone) {
@@ -37,26 +30,8 @@ public class PhoneMessage {
 
 	    System.out.println(message.getSid());
 	  }
+}
 	  
 	  
-	  public static void sendMesg(String phone, String state) throws IOException, NexmoClientException {
-		  NexmoClient client = new NexmoClient.Builder()
-				  .apiKey("564acfcc")
-				  .apiSecret("OB2aIYyuwIg2TUyX")
-				  .build();
-		  		
-		  if(state.equals("accepted"))
-				messageText = "Accepted";
-		  if(state.equals("accepted"))
-			  	messageText = "Rejected";
-			  	
-				
-				TextMessage message = new TextMessage("Nexmo", phone, messageText);
-				SmsSubmissionResponse response = client.getSmsClient().submitMessage(message);
-
-				for (SmsSubmissionResponseMessage responseMessage : response.getMessages()) {
-				    System.out.println(responseMessage);
-				}
-	  }
-	}
+	
 
