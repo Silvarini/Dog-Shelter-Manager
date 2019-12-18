@@ -5,13 +5,15 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.KeyEvent;
 import pt.iade.dsm.DAO.AdoptionRequestDAO;
 import pt.iade.dsm.DAO.DogDAO;
 import pt.iade.dsm.DAO.EmployeeDAO;
@@ -67,10 +69,9 @@ public class AdminPageController implements Initializable{
     /** The state column. */
     @FXML
     private TableColumn<Dog, String> state;
-    
-    
-    
+        
 
+    
     /** The table employee. */
     @FXML
     private TableView<Employee> tableEmployee;
@@ -83,7 +84,7 @@ public class AdminPageController implements Initializable{
     @FXML
     private TableColumn<Employee, String> nameEColumn;
 
-    /** The birthdate Employee column. */
+    /** The birthday Employee column. */
     @FXML
     private TableColumn<Employee, String> birthdateEColumn;
 
@@ -105,8 +106,6 @@ public class AdminPageController implements Initializable{
 	
     
     
-    
-	
     /** The historic table. */
     @FXML
     private TableView<State> historicTable;
@@ -132,12 +131,10 @@ public class AdminPageController implements Initializable{
     private TableColumn<State, String> dateH;
     
     
-    
-    
-    
+        
     /** The table adoptions completed. */
     @FXML
-    private TableView<Adoption> adoptionsCompleted;
+    private TableView<Adoption> adoptionsProcess;
 
     /** The column adoption ID. */
     @FXML
@@ -160,8 +157,10 @@ public class AdminPageController implements Initializable{
     private TableColumn<Adoption, String> date;
 
     
+    @FXML
+    private TextField filter;
+
     
-	
     /**
      * Button that opens employee creation page.
      *
@@ -171,17 +170,6 @@ public class AdminPageController implements Initializable{
     @FXML
     void CNEmployeePushed(ActionEvent event) throws IOException {
     	SceneChanger.openWindow("views/CreateEmployee.fxml",new NewEmployeeController(), event);
-    }
-
-    /**
-     * Filter results.
-     * Still in development.
-     *
-     * @param event the event
-     */
-    @FXML
-    void FilterText(KeyEvent event) {
-
     }
 
     /**
@@ -241,19 +229,10 @@ public class AdminPageController implements Initializable{
 		} catch (SQLException e) {
 			e.printStackTrace();
 			}
-		
-		
-		try {
-				tableEmployee.getItems().addAll(EmployeeDAO.loadEmployees());
-		} catch (IOException e) {
-				e.printStackTrace();
-		} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		
+	
 		
 		try {
-			adoptionsCompleted.getItems().addAll(AdoptionRequestDAO.loadAdoptionRequests());
+			adoptionsProcess.getItems().addAll(AdoptionRequestDAO.loadAdoptionRequests());
 		} catch (SQLException e) {
 			e.printStackTrace();
 			}
@@ -265,7 +244,101 @@ public class AdminPageController implements Initializable{
 			e.printStackTrace();
 			}
 	
+		try {
+			tableEmployee.getItems().addAll(EmployeeDAO.loadEmployees());
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
 	
-	}
+		}
+		
+				
+		//Dog table filter
+		try {
+			FilteredList<Dog> filteredData = new FilteredList<>( DogDAO.loadAdoptableDogs(), p -> true);
+		
 
+        // 2. Set the filter Predicate whenever the filter changes.
+        filter.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(dog -> {
+                // If filter text is empty, display all persons.
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                // Compare first name and last name field in your object with filter.
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (String.valueOf(dog.getName()).toLowerCase().contains(lowerCaseFilter)) {
+                    return true; // Filter matches name.
+                } else if (String.valueOf(dog.getBreed()).toLowerCase().contains(lowerCaseFilter)) {
+                    return true; // Filter matches breed.
+                } else if (String.valueOf(dog.getGender()).toLowerCase().contains(lowerCaseFilter)) {
+                    return true; // Filter matches gender.
+                } 
+                
+
+                return false; // Does not match.
+            });
+        });
+
+        // 3. Wrap the FilteredList in a SortedList. 
+        SortedList<Dog> sortedData = new SortedList<>(filteredData);
+
+        // 4. Bind the SortedList comparator to the TableView comparator.
+        sortedData.comparatorProperty().bind(tableDog.comparatorProperty());
+        // 5. Add sorted (and filtered) data to the table.
+        tableDog.setItems(sortedData);
+        
+	}catch (SQLException e) {
+		e.printStackTrace();
+	}
+		
+		//Employee table filter
+		try {
+			FilteredList<Employee> filteredData2 = new FilteredList<>( EmployeeDAO.loadEmployees(), p -> true);
+		
+
+        // 2. Set the filter Predicate whenever the filter changes.
+        filter.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData2.setPredicate(employee -> {
+                // If filter text is empty, display all persons.
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                // Compare first name and last name field in your object with filter.
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (String.valueOf(employee.getName()).toLowerCase().contains(lowerCaseFilter)) {
+                    return true; // Filter matches name.
+                } else if (String.valueOf(employee.getGender()).toLowerCase().contains(lowerCaseFilter)) {
+                    return true; // Filter matches gender.
+                } else if (String.valueOf(employee.getEmployeeID()).toLowerCase().contains(lowerCaseFilter)) {
+                    return true; // Filter matches id.
+                } 
+                
+
+                return false; // Does not match.
+            });
+        });
+
+        // 3. Wrap the FilteredList in a SortedList. 
+        SortedList<Employee> sortedData = new SortedList<>(filteredData2);
+
+        // 4. Bind the SortedList comparator to the TableView comparator.
+        sortedData.comparatorProperty().bind(tableEmployee.comparatorProperty());
+        // 5. Add sorted (and filtered) data to the table.
+        tableEmployee.setItems(sortedData);
+        
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+
+	}
 }

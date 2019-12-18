@@ -228,8 +228,8 @@ public class NewDogController implements Initializable{
 		String size[] = {"XS","small","medium","large","XL"};
 		dogSize.getItems().addAll(size);
 		
-		dogGender.getItems().add("M");
-		dogGender.getItems().add("F");
+		dogGender.getItems().add("Male");
+		dogGender.getItems().add("Female");
 		
 		dogCL.getItems().add("small");
 		dogCL.getItems().add("medium");

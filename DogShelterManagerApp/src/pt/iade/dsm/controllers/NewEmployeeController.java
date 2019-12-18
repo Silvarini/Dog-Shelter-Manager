@@ -204,11 +204,11 @@ public class NewEmployeeController implements Initializable {
 		 }
 		
 		
-		Sex.getItems().add("M");
-		Sex.getItems().add("F");
+		Sex.getItems().add("Male");
+		Sex.getItems().add("Female");
 		
 		Role.getItems().add("Administrador");
-		Role.getItems().add("Funcionï¿½rio");
+		Role.getItems().add("Funcionário");
 		
 		errorMsg.setText("");
 		

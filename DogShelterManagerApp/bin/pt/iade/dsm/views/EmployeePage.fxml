@@ -71,7 +71,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="Dog" prefHeight="335.0" prefWidth="690.0">
+                        <TableView fx:id="Dog" onMouseClicked="#onDogSelected" prefHeight="335.0" prefWidth="690.0">
                           <columns>
                             <TableColumn fx:id="idColumn" editable="false" prefWidth="75.0" resizable="false" text="ID" />
                             <TableColumn fx:id="nameDColumn" editable="false" prefWidth="150.0" resizable="false" text="Name" />

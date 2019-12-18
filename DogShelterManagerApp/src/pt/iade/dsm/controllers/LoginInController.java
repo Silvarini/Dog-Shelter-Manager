@@ -74,7 +74,7 @@ public class LoginInController implements Initializable{
     				{
     					SceneChanger.openWindow("views/AdminPage.fxml", new AdminPageController(), event);
     				}
-    			else if(employee.getPos_held().equals("Funcionï¿½rio"))
+    			else if(employee.getPos_held().equals("Funcionário"))
     				{
     					SceneChanger.openWindow("views/EmployeePage.fxml", new EmployeePageController(), event);
     				}

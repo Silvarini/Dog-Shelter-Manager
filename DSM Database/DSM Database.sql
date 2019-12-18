@@ -5,9 +5,9 @@ Create table StateType (state varchar(20) not null,
 						constraint STPK primary key (state));
 	insert into StateType (state) values ("dead"),("adopted"),("returned"),("not adopted");
 
-create table Gender(Gender varchar(1),
+create table Gender(Gender varchar(6),
 					constraint GenderFK primary key (Gender));
-	insert into Gender(Gender) value ("M"),("F");
+	insert into Gender(Gender) value ("Male"),("Female");
     
 create table CoatLengthClass(cLengthClass varchar(6),
 							constraint CLPK primary key (cLengthClass));
@@ -34,7 +34,7 @@ Create table Dog ( nameDog varchar(20),
 				   dogID int auto_increment not null,
                    breedDog varchar(20),
                    ageDog varchar(10),
-                   genderDog varchar(1),
+                   genderDog varchar(6),
                    sizeDog varchar(9),
                    coatLengthDog varchar(6),
                    goodWithDog varchar(4),
@@ -66,7 +66,7 @@ insert into EmployeePosition(position) values ("Administrador"),("Funcionário")
 
 Create table Employee ( nameEmployee varchar (50),
 						employeeID int auto_increment not null,
-                        genderEmployee varchar(1),
+                        genderEmployee varchar(6),
                         birthdate date,
                         username varchar(15),
                         password varchar(15),
@@ -77,8 +77,8 @@ Create table Employee ( nameEmployee varchar (50),
                         Constraint EGenderFK foreign key (genderEmployee) references Gender(gender),
                         constraint ephFK foreign key (positionHeld) references EmployeePosition(position));
                         
-                   insert into Employee (nameEmployee, genderEmployee,birthdate,username,password,positionHeld,PhotoFile) values ("Nzembo Pitta Grós","M","2001-04-18","nzembo_gros","12345678","Administrador","DefeaultPerson.png");
-				   insert into Employee (nameEmployee, genderEmployee,birthdate,username,password,positionHeld,PhotoFile) values ("Bernardo Silva","M","1999-01-01","benno_silva","87654321","Administrador","DefaultPerson.png");
+                   insert into Employee (nameEmployee, genderEmployee,birthdate,username,password,positionHeld,PhotoFile) values ("Nzembo Pitta Grós","Male","2001-04-18","nzembo_gros","12345678","Administrador","DefeaultPerson.png");
+				   insert into Employee (nameEmployee, genderEmployee,birthdate,username,password,positionHeld,PhotoFile) values ("Bernardo Silva","Male","1999-01-01","benno_silva","87654321","Administrador","DefaultPerson.png");
                    select * from Employee;
                   
                    

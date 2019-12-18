@@ -134,7 +134,10 @@ public String getName() {
  * @param name the new name
  */
 public void setName(String name) {
-	this.name = name;
+	if(name.length()>0 && name.length()<15)		
+		this.name = name;
+	else 
+		throw new IllegalArgumentException("The name must be shorter than 15 characters");
 }
 
 
@@ -307,6 +310,8 @@ public String getObs() {
  * @param obs the new obs
  */
 public void setObs(String obs) {
+	if(obs.length()==0)
+		throw new IllegalArgumentException("Please provide more information.");
 	this.Obs = obs;
 }
 

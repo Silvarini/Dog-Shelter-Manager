@@ -98,6 +98,8 @@ import pt.iade.dsm.models.Dog;
     /** The adoption. */
     private static Adoption adoption;
     
+    private static Dog dog;
+    
     
     /**
      * This method return to the landing page.
@@ -150,6 +152,12 @@ import pt.iade.dsm.models.Dog;
 
     }
     
+    @FXML
+    void onDogSelected(MouseEvent event) throws IOException {
+    	setDog(Dog.getSelectionModel().getSelectedItem());
+    	SceneChanger.openWindow("views/EditDog.fxml", new EditDogController(), event);
+    }
+    
 
 
 	/**
@@ -183,7 +191,7 @@ import pt.iade.dsm.models.Dog;
 		stateDColumn.setCellValueFactory(new PropertyValueFactory<Dog, String>("state"));
 		
 		try {
-					AdoptionRequests.getItems().addAll(AdoptionRequestDAO.loadAdoptionRequestsOnHold());
+			AdoptionRequests.getItems().addAll(AdoptionRequestDAO.loadAdoptionRequestsOnHold());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -204,7 +212,7 @@ import pt.iade.dsm.models.Dog;
 	        }
 	        catch (IOException e)
 	        {
-	            System.err.println(e.getMessage());
+	            e.printStackTrace();
 	        }
 		
 		
@@ -228,6 +236,16 @@ import pt.iade.dsm.models.Dog;
 	 */
 	public void setAdoption(Adoption adoption) {
 		EmployeePageController.adoption = adoption;
+	}
+
+
+	public static Dog getDog() {
+		return dog;
+	}
+
+
+	public static void setDog(Dog dog) {
+		EmployeePageController.dog = dog;
 	}
 
 }

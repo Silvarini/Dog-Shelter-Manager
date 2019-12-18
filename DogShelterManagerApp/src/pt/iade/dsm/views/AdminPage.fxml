@@ -105,7 +105,7 @@
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="41.0" prefWidth="723.0">
          <children>
-            <TextField onKeyPressed="#FilterText" promptText="Search">
+            <TextField fx:id="filter" promptText="Search">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>

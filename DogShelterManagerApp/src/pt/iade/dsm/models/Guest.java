@@ -80,7 +80,7 @@ public class Guest {
 		boolean b = m.find();
 		
 		if (hasDigit || b)
-			throw new IllegalArgumentException("The choosen characteres are not allowed.");
+			throw new IllegalArgumentException("The choosen characteres for the name are not allowed.");
 		
 		else
 		this.firstName = firstName;
@@ -114,7 +114,7 @@ public class Guest {
 		boolean b = m.find();
 		
 		if (hasDigit || b)
-			throw new IllegalArgumentException("The choosen characteres are not allowed.");
+			throw new IllegalArgumentException("The choosen characteres for the name are not allowed.");
 		
 		else
 		this.lastName = lastName;
@@ -133,16 +133,22 @@ public class Guest {
 
 
 
-	/**
+	public boolean verifyPN(String phone) {
+	 String ePattern = "^[+]?\\d{12}";
+     java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
+     java.util.regex.Matcher m = p.matcher(phone);
+     return m.matches();
+	}
+     /**
 	 * Sets the phone.
 	 *
 	 * @param phone the new phone
 	 */
 	public void setPhone(String phone) {
-		//if(phone.matches("[+]\\[3519]\\d{8}"))
+		if(verifyPN(phone))
 			this.phone = phone;
-		//else 
-			//throw new IllegalArgumentException("The number must follow the pattern +3519XXXXXXXX");
+		else 
+			throw new IllegalArgumentException("The number must follow the pattern +CCCNNXXXXXXX");
 	}
 
 
@@ -178,7 +184,7 @@ public class Guest {
 	public void setEmail(String email) {
 		if(isValidEmailAddress(email))
 		this.email = email;
-//		throw new IllegalAnnotationException("The email is not valid.");
+		//throw new IllegalAnnotationException("The email is not valid.");
 			else
 			throw new IllegalAnnotationException("The email is not valid.");
 			//this.email = email;

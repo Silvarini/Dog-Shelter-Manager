@@ -123,6 +123,58 @@ public class DogDAO {
 		return dogs;
 }
 	
+	public static ObservableList<Dog> loadAdoptableDogs() throws SQLException{
+
+		Connection conn = DBConnector.getConnection();
+		Statement statement = null;
+		ResultSet resultSet = null;
+		ObservableList<Dog> dogs = FXCollections.observableArrayList();
+		
+		try{
+			//create a statement object
+			statement = conn.createStatement();
+
+			//create the SQL query
+			resultSet = statement.executeQuery("SELECT * FROM Dog WHERE currentState='not adopted' OR currentState='returned'");
+
+			while (resultSet.next())
+			{
+				Dog newDog = new Dog(resultSet.getString("nameDog"),
+						resultSet.getString("breedDog"),
+						resultSet.getString("ageDog"),
+						resultSet.getString("genderDog"),
+						resultSet.getString("sizeDog"),
+						resultSet.getString("coatLengthDog"),
+						resultSet.getString("goodWithDog"),
+						resultSet.getString("obs"));
+				
+				newDog.setId(resultSet.getInt("dogID"));
+                newDog.setPhoto(new File(resultSet.getString("photoFile")));
+                newDog.setState(resultSet.getString("currentState"));
+				
+				dogs.add(newDog);
+				
+			}
+	} 
+		
+		catch (Exception e)
+	{
+		System.err.println(e);
+	}
+		finally
+	{
+		if (conn != null)
+			conn.close();
+		if(statement != null)
+			statement.close();
+		if(resultSet != null)
+			resultSet.close();
+	}
+		return dogs;
+}
+	
+	
+	
 	/**
 	 * Change dog state.
 	 *
@@ -225,4 +277,43 @@ public class DogDAO {
 	}
 		return newDog;
 }
+	
+	
+	public static void updateDog(Dog dog) throws SQLException {
+		Connection conn = DBConnector.getConnection();
+	    PreparedStatement preparedStatement = null;
+	 
+	    try { 
+	    //2. Create a String that holds the query with ? as user inputs
+        String sql = "UPDATE Dog SET sizeDog=?, coatLengthDog=?, ageDog=?, currentState=?, obs=? WHERE dogID=?;";
+              
+        //3. prepare the query
+        preparedStatement = conn.prepareStatement(sql);
+        
+        preparedStatement.setString(1, dog.getSize());
+        preparedStatement.setString(2, dog.getCoat());
+        preparedStatement.setString(3, dog.getAge());
+        preparedStatement.setString(4, dog.getState());
+        preparedStatement.setString(5, dog.getObs());
+        preparedStatement.setInt(6, dog.getId());
+        
+        preparedStatement.executeUpdate();
+        
+		
+	 }
+    catch (Exception e)
+    {
+        System.err.println(e.getMessage());
+    }
+    finally
+    {
+        if (preparedStatement != null)
+            preparedStatement.close();
+        
+        if (conn != null)
+            conn.close();
+    }
+    
+	}
+	
 }
