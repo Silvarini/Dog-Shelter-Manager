@@ -3,7 +3,6 @@ package pt.iade.dsm.controllers;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import com.nexmo.client.NexmoClientException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -35,10 +34,9 @@ public class LandingPageController {
      *
      * @param event the event
      * @throws IOException Signals that an I/O exception has occurred.
-     * @throws NexmoClientException the nexmo client exception
      */
     @FXML
-    void onDonationsPushed(ActionEvent event) throws IOException, NexmoClientException  {
+    void onDonationsPushed(ActionEvent event) throws IOException {
     	//PhoneMessage.sendMesg("+351962164544", "accepted");
     }
 

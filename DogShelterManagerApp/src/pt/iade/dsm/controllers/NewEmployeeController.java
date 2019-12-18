@@ -25,9 +25,9 @@ import javafx.stage.Stage;
 import pt.iade.dsm.DAO.EmployeeDAO;
 import pt.iade.dsm.models.Employee;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class NewEmployeeController.
+ * This class is the controller for the new employee scene.
+ * 
  */
 public class NewEmployeeController implements Initializable {
 	
@@ -43,7 +43,7 @@ public class NewEmployeeController implements Initializable {
     @FXML
     private PasswordField confirmPasswordTextField;
 
-    /** The Birthdate. */
+    /** The Birthdate date picker. */
     @FXML
     private DatePicker Birthdate;
 
@@ -53,12 +53,12 @@ public class NewEmployeeController implements Initializable {
     private TextField NameTextField;
         
 
-	/** The Sex. */
+	/** The Sex choice box. */
 	@FXML
     private ChoiceBox<String> Sex;
     
    
-    /** The Role. */
+    /** The Role choice box. */
     @FXML
     private ChoiceBox<String> Role;
     
@@ -68,7 +68,7 @@ public class NewEmployeeController implements Initializable {
     private ImageView PhotoView;
 
     
-    /** The error msg. */
+    /** The error message. */
     @FXML
     private Label errorMsg;
        
@@ -76,7 +76,7 @@ public class NewEmployeeController implements Initializable {
     /** The image file. */
     private File imageFile;
     
-    /** The image file changed. */
+    /** The image file changed boolean. */
     boolean imageFileChanged;
     
     
@@ -84,7 +84,7 @@ public class NewEmployeeController implements Initializable {
     
     
     /**
-     * On back clicked.
+     * This method changes into admin page's scene.
      *
      * @param event the event
      * @throws IOException Signals that an I/O exception has occurred.
@@ -96,8 +96,10 @@ public class NewEmployeeController implements Initializable {
     
     
     /**
-     * On save button pushed.
-     *
+     * This Button saves the values for the new employee.
+     * Has a condition that confirms the password fields, to see if they match.
+     * When the employee is created with success the scene changes back to the admin page.`
+     * 
      * @param event the event
      */
     @FXML
@@ -124,7 +126,7 @@ public class NewEmployeeController implements Initializable {
     }  
     
     /**
-     * On upload photo pushed.
+     * This method opens file chooser.
      *
      * @param event the event
      */
