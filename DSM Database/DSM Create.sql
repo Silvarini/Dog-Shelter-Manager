@@ -1,25 +1,27 @@
+
+/*Dog States*/
 CREATE TABLE StateType (stateID int AUTO_INCREMENT not null, state varchar(20) not null,
 			constraint STPK primary key (stateID));
-    
+/*Genders*/   
 CREATE TABLE Gender(genderID int AUTO_INCREMENT not null, gender varchar(6),
 		    constraint GIPK primary key (genderID));
-    
+/*Dog Coat Length Class*/    
 CREATE TABLE CoatLengthClass(cLengthClassID int AUTO_INCREMENT not null, cLengthClass varchar(6),
 			     constraint CLPK primary key (cLengthClassID));
-    
+/*Dog Good With Class (interaction with others)*/
 CREATE TABLE GoodWith ( goodWithID int AUTO_INCREMENT not null, goodWith varchar(15),
 		        constraint GWPK primary key (goodWithID));
-    
+/*Dog Size Class*/    
 CREATE TABLE SizeClass (sizeClassID int AUTO_INCREMENT not null, sizeClass varchar(10),
 			constraint SizePK primary key (sizeClassID));
-    
+/*Breeds*/    
 CREATE TABLE Breed (breedID int AUTO_INCREMENT not null, breed varchar(20),
 		    constraint BreedPK primary key (breedID));
-    
+/*Dog Age Class*/    
 CREATE TABLE AgeClass ( ageClassID int AUTO_INCREMENT not null, ageClass varchar(10),
 			constraint AgePK primary key (ageClassID));
     
-
+/*Dog*/
 CREATE TABLE Dog ( nameDog varchar(20),
 		   dogID int auto_increment not null,
                    breedDog int,
@@ -53,11 +55,11 @@ CREATE TABLE Dog ( nameDog varchar(20),
                  
                     
                                 
- 
+/*Employee Roles*/ 
 CREATE TABLE EmployeePosition ( positionID int AUTO_INCREMENT not null, position varchar(15),
 			        constraint EPPK primary key (positionID));
 
-
+/*Employees*/
 CREATE TABLE Employee ( nameEmployee varchar (50),
 			employeeID int auto_increment not null,
                         genderEmployee int,
@@ -79,7 +81,7 @@ CREATE TABLE Employee ( nameEmployee varchar (50),
                    
                    
            
-                   
+/*Guests*/                  
 CREATE TABLE Guest ( firstName varchar(15),
 		     lastName varchar(15),	
 		     phone varchar(13) NOT NULL UNIQUE,
@@ -92,7 +94,7 @@ CREATE TABLE Guest ( firstName varchar(15),
 
 
 
-
+/*Historic*/
 CREATE TABLE Historic(idHistoric int auto_increment,
 		      stateType int,
 		      dogID INT,
@@ -108,12 +110,11 @@ CREATE TABLE Historic(idHistoric int auto_increment,
 		);
 
 
-  
-  
+ /*States of Adoption*/ 
 CREATE TABLE StateAdoption( stateTypesID int AUTO_INCREMENT not null, stateTypes varchar(10),
 			    constraint SSPK primary key (stateTypesID));
                              
-			     
+/*Adoption Requests*/			     
 CREATE TABLE AdoptionRequests (	adoptionID INT auto_increment not null ,
 				guestID varchar(13) not null,
                                 dogID int not null,
@@ -130,7 +131,7 @@ CREATE TABLE AdoptionRequests (	adoptionID INT auto_increment not null ,
                         ); 
 
 
-
+/*Events*/
 CREATE TABLE Events ( id int auto_increment not null,
 		      idE int not null,
                       title varchar(20) not null,
@@ -145,7 +146,7 @@ CREATE TABLE Events ( id int auto_increment not null,
                     );
 
 
-                      
+/*Volunteer*/                      
 CREATE TABLE Volunteer( id int auto_increment,
 			fName varchar(14) not null,
                         lName varchar(20) not null,
@@ -158,7 +159,7 @@ CREATE TABLE Volunteer( id int auto_increment,
                      constraint ipPK primary key (id, phone, email));
 		     
 		     
-
+/*Registrations of volunteers in events*/
 CREATE TABLE Inscricao( idinsc int auto_increment,
 			idvolunteer int not null,
 			idevent int not null, 
