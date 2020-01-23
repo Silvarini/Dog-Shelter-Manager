@@ -8,6 +8,7 @@ import java.sql.Statement;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
 import pt.iade.dsm.models.Guest;
 
 /**
@@ -98,4 +99,67 @@ public class GuestDAO {
 		return guests;	
 	
 	}
+	
+	/**
+	 * Verifies guest from database.
+	 *
+	 * @param guestID the guest ID
+	 * @return the guest
+	 * @throws SQLException the SQL exception
+	 */
+public static Guest VerifyGuest(String guestID) throws SQLException {
+		
+		Connection conn = DBConnector.getConnection();
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        
+        try{
+            
+            //2.  create a query string with ? used instead of the values given by the user
+            String sql = "SELECT * FROM Guest WHERE phone = ?;";
+            
+            //3.  prepare the statement
+            preparedStatement = conn.prepareStatement(sql);
+           
+            //4.
+            preparedStatement.setString(1, guestID);
+            
+            
+            //5. execute the query
+            resultSet = preparedStatement.executeQuery();
+            
+            //6.  extract the password and role from the resultSet
+            while (resultSet.next())
+            {
+            	  Guest guest = new Guest(resultSet.getString("firstName"), 
+ 		 				 resultSet.getString("lastName"), 
+ 		 				 resultSet.getString("phone"), 
+ 		 				 resultSet.getString("email"),
+ 		 				 resultSet.getString("adress"),
+ 		 				 resultSet.getString("obs"));
+
+          		return guest;
+
+            }
+                  
+           
+        } catch (Exception e)
+        {
+        	e.printStackTrace();
+        }
+        finally
+        {
+        	if (conn != null)
+        		conn.close();
+        	if(preparedStatement != null)
+        		preparedStatement.close();
+        	if(resultSet != null)
+        		resultSet.close();
+        }
+	return null;
+
+	}
+
+	
+	
 }

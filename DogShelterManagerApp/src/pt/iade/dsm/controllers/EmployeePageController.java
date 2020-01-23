@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 import javax.imageio.ImageIO;
@@ -22,15 +23,32 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import pt.iade.dsm.DAO.AdoptionRequestDAO;
 import pt.iade.dsm.DAO.DogDAO;
+import pt.iade.dsm.DAO.EventDAO;
 import pt.iade.dsm.models.Adoption;
 import pt.iade.dsm.models.Dog;
+import pt.iade.dsm.models.Employee;
+import pt.iade.dsm.models.Event;
 
 /**
  * This class is the controller for the employee's page 
  *  
  * */ class EmployeePageController implements Initializable{
 
-    /** The employee name label. */
+    /** The employee. */
+    private Employee employee=null;
+
+
+	/**
+	 * Instantiates a new employee page controller.
+	 *
+	 * @param employee the employee
+	 */
+	public EmployeePageController(Employee employee) {
+    	this.setEmployee(employee);	
+    	}
+
+
+	/** The employee name label. */
     @FXML
     private Label eNameLabel;
 
@@ -94,10 +112,36 @@ import pt.iade.dsm.models.Dog;
     /** The state dog column. */
     @FXML
     private TableColumn<Dog, String> stateDColumn;
+    
+    /** The Events. */
+    @FXML
+    private TableView<Event> Events;
+
+    /** The id. */
+    @FXML
+    private TableColumn<Event, Integer> id;
+
+    /** The title. */
+    @FXML
+    private TableColumn<Event, String> title;
+
+    /** The date. */
+    @FXML
+    private TableColumn<Event, LocalDate> date;
+
+    /** The Nmax. */
+    @FXML
+    private TableColumn<Event, Integer> Nmax;
+
+    /** The Nvol. */
+    @FXML
+    private TableColumn<Event, Integer> Nvol;
+
 
     /** The adoption. */
     private static Adoption adoption;
     
+    /** The dog. */
     private static Dog dog;
     
     
@@ -121,10 +165,23 @@ import pt.iade.dsm.models.Dog;
      */
     @FXML
     void InsertDogPushed(ActionEvent event) throws IOException {
-    	SceneChanger.openWindow("views/AddingDog.fxml", new NewDogController(), event);
+    	SceneChanger.openWindow("views/AddingDog.fxml", new NewDogController(employee), event);
 
     } 
+    
+    /**
+     * This method opens the scene where events are created.
+     *
+     * @param event the event
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
+    @FXML
+    void onCreateEventPressed(ActionEvent event) throws IOException {
+    	SceneChanger.openWindow("views/CreateEvent.fxml", new NewEventController(employee), event);
+    }
         
+    
+    
     /**
      * This method opens the pop up where the employee changes the adoption state 
      * from a selected adoption request from the table.
@@ -134,17 +191,21 @@ import pt.iade.dsm.models.Dog;
      */
     @FXML
     void onAdoptionSelected(MouseEvent event) throws IOException {
+    	
     	setAdoption(AdoptionRequests.getSelectionModel().getSelectedItem());
-    	PopUpDisplayer.showPopupWindow("views/AdoptionConfirmation.fxml", new AdoptionDecisionController());
+    	PopUpDisplayer.showPopupWindow("views/AdoptionConfirmation.fxml", new AdoptionDecisionController(adoption, employee));
     	AdoptionRequests.getItems().clear();
     	Dog.getItems().clear();
+    	
+    	/*Loads all adoptions that are in the state of "on hold", in the table view of AdoptionRequests*/
     	try {
-			AdoptionRequests.getItems().addAll(AdoptionRequestDAO.loadAdoptionRequestsOnHold());
+			AdoptionRequests.setItems(AdoptionRequestDAO.loadAdoptionRequestsOnHold());
     	} catch (SQLException e) {
     		e.printStackTrace();
     	}
+    	/*Loads all dogs, in the table view of Dog*/
     	try {
-			Dog.getItems().addAll(DogDAO.loadDogs());
+			Dog.setItems(DogDAO.loadDogs());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -152,10 +213,22 @@ import pt.iade.dsm.models.Dog;
 
     }
     
+    /**
+     * On dog selected.
+     *
+     * @param event the event
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
+    /*Mouse event, when clicked, opens the dog's edit page.
+     * This method has a condition that doesn't open the page if the dog's state is "dead"
+     */
     @FXML
     void onDogSelected(MouseEvent event) throws IOException {
     	setDog(Dog.getSelectionModel().getSelectedItem());
-    	SceneChanger.openWindow("views/EditDog.fxml", new EditDogController(), event);
+    	if(dog.getState().getState().equals("dead"))
+    	    throw new IllegalArgumentException("Cannot edit a dead dog.");
+    	else
+    	SceneChanger.openWindow("views/EditDog.fxml", new EditDogController(dog, employee), event);
     }
     
 
@@ -172,9 +245,9 @@ import pt.iade.dsm.models.Dog;
 	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		eNameLabel.setText(LoginInController.getEmployee().getName());
-		eIDLabel.setText(String.valueOf(LoginInController.getEmployee().getEmployeeID()));
-		eGLabel.setText(LoginInController.getEmployee().getGender());
+		eNameLabel.setText(getEmployee().getName());
+		eIDLabel.setText(String.valueOf(getEmployee().getEmployeeID()));
+		eGLabel.setText(getEmployee().getGender().getGender());
 		
 		
 		idAColumn.setCellValueFactory(new PropertyValueFactory<Adoption, String>("AdoptionID"));
@@ -190,6 +263,22 @@ import pt.iade.dsm.models.Dog;
 		ageColumn.setCellValueFactory(new PropertyValueFactory<Dog, String>("age"));
 		stateDColumn.setCellValueFactory(new PropertyValueFactory<Dog, String>("state"));
 		
+		
+		id.setCellValueFactory(new PropertyValueFactory<Event, Integer>("id"));
+		title.setCellValueFactory(new PropertyValueFactory<Event, String>("title"));
+		date.setCellValueFactory(new PropertyValueFactory<Event, LocalDate>("eventDate"));
+		Nmax.setCellValueFactory(new PropertyValueFactory<Event, Integer>("maxPart"));
+		Nvol.setCellValueFactory(new PropertyValueFactory<Event, Integer>("currentPart"));
+		
+		try {
+			Events.getItems().addAll(EventDAO.loadEvents());
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
+		
 		try {
 			AdoptionRequests.getItems().addAll(AdoptionRequestDAO.loadAdoptionRequestsOnHold());
 		} catch (SQLException e) {
@@ -204,7 +293,7 @@ import pt.iade.dsm.models.Dog;
 
 
 		 try{
-	            String imgLocation = "src/pt/iade/dsm/images/Employees/" + LoginInController.getEmployee().getPhoto().getName();
+	            String imgLocation = "src/pt/iade/dsm/images/Employees/" + getEmployee().getPhoto().getName();
 	            File imageFile = new File(imgLocation);
 	            BufferedImage bufferedImage = ImageIO.read(imageFile);
 	            Image image = SwingFXUtils.toFXImage(bufferedImage, null);
@@ -222,7 +311,7 @@ import pt.iade.dsm.models.Dog;
 	/**
 	 * Gets the adoption.
 	 *
-	 * @return the adoption
+	 * @return the adoption.
 	 */
 	public static Adoption getAdoption() {
 		return adoption;
@@ -232,20 +321,46 @@ import pt.iade.dsm.models.Dog;
 	/**
 	 * Sets the adoption.
 	 *
-	 * @param adoption the new adoption
+	 * @param adoption the new adoption.
 	 */
 	public void setAdoption(Adoption adoption) {
 		EmployeePageController.adoption = adoption;
 	}
 
-
+	/**
+	 * Gets the dog.
+	 *
+	 * @return the dog.
+	 */
 	public static Dog getDog() {
 		return dog;
 	}
 
-
+	/**
+	 * Sets the dog.
+	 *
+	 * @param dog the new dog.
+	 */
 	public static void setDog(Dog dog) {
 		EmployeePageController.dog = dog;
+	}
+
+	/**
+	 * Gets the employee.
+	 *
+	 * @return the employee.
+	 */
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	/**
+	 * Sets the employee.
+	 *
+	 * @param employee the new employee.
+	 */
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
 
 }

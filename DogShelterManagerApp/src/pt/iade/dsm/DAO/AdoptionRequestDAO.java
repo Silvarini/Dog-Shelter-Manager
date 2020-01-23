@@ -10,6 +10,7 @@ import java.sql.Statement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import pt.iade.dsm.models.Adoption;
+import pt.iade.dsm.models.StateAdoption;
 
 /**
  * This class connects to the database getting and setting values for the adoption requests.
@@ -20,9 +21,10 @@ public class AdoptionRequestDAO {
 	 * Insert adoption request values into the database.
 	 *
 	 * @param adoption the adoption
+	 * @param adoptionState the adoption state
 	 * @throws SQLException the SQL exception
 	 */
-	public static void insertAdoptionRequestDB(Adoption adoption) throws SQLException {
+	public static void insertAdoptionRequestDB(Adoption adoption, StateAdoption adoptionState) throws SQLException {
 		Connection conn = DBConnector.getConnection();
         PreparedStatement preparedStatement = null;
         
@@ -43,7 +45,7 @@ public class AdoptionRequestDAO {
             //5. Bind the values to the parameters
             preparedStatement.setString(1, adoption.getGuestID());
             preparedStatement.setInt(2, adoption.getDogID());
-            preparedStatement.setString(3, adoption.getState());
+            preparedStatement.setInt(3, adoptionState.getAdoptionID());
             preparedStatement.setDate(4, requestDate);
             
             preparedStatement.executeUpdate();
@@ -79,12 +81,12 @@ public class AdoptionRequestDAO {
 				statement = conn.createStatement();
 
 				//create the SQL query
-				resultSet = statement.executeQuery("SELECT * FROM AdoptionRequests");
+				resultSet = statement.executeQuery("SELECT adoptionID,requestDate, guestID, dogID, stateTypesID, stateTypes FROM AdoptionRequests, StateAdoption WHERE state = stateTypesID AND state = 2 OR state = 3");
 	         while (resultSet.next())
 	         {
 	             Adoption adoption = new Adoption(resultSet.getString("guestID"),
 	            		 							resultSet.getInt("dogID"),
-	            		 							resultSet.getString("state"));
+	            		 							new StateAdoption(resultSet.getInt("stateTypesID"),resultSet.getString("stateTypes")));
 	             adoption.setAdoptionID(resultSet.getInt("adoptionID"));
 	             adoption.setRequestDate(resultSet.getDate("requestDate").toLocalDate());
 	             adoptions.add(adoption);
@@ -115,12 +117,12 @@ public class AdoptionRequestDAO {
 				statement = conn.createStatement();
 
 				//create the SQL query
-				resultSet = statement.executeQuery("SELECT * FROM AdoptionRequests where state='on hold'");
+				resultSet = statement.executeQuery("SELECT adoptionID, requestDate,guestID, dogID, stateTypesID, stateTypes FROM AdoptionRequests,StateAdoption where state = 1 AND stateTypesID = state");
 	         while (resultSet.next())
 	         {
 	             Adoption adoption = new Adoption(resultSet.getString("guestID"),
 	            		 							resultSet.getInt("dogID"),
-	            		 							resultSet.getString("state"));
+	            		 							new StateAdoption(resultSet.getInt("stateTypesID"),resultSet.getString("stateTypes")));
 	             adoption.setAdoptionID(resultSet.getInt("adoptionID"));
 	             adoption.setRequestDate(resultSet.getDate("requestDate").toLocalDate());
 	             adoptions.add(adoption);
@@ -139,9 +141,10 @@ public class AdoptionRequestDAO {
 	 * Updates the adoption request's state from the employee's decision.
 	 *
 	 * @param adoption the adoption
+	 * @param adoptionState the adoption state
 	 * @throws SQLException the SQL exception
 	 */
-	public static void decisionUpload (Adoption adoption) throws SQLException {
+	public static void decisionUpload (Adoption adoption, StateAdoption adoptionState) throws SQLException {
 	
 	Connection conn = DBConnector.getConnection();
     PreparedStatement preparedStatement = null;
@@ -156,7 +159,7 @@ public class AdoptionRequestDAO {
         preparedStatement = conn.prepareStatement(sql);
         
         
-        preparedStatement.setString(1, adoption.getState());
+        preparedStatement.setInt(1, adoptionState.getAdoptionID());
         preparedStatement.setInt(2, adoption.getAdoptionID());
         
         preparedStatement.executeUpdate();
@@ -175,5 +178,8 @@ public class AdoptionRequestDAO {
     }
 	
 }
+	
+	
+
 	
 }

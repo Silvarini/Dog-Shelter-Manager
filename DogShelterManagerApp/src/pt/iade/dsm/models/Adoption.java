@@ -21,7 +21,7 @@ public class Adoption {
    private int employeeID;  
    
    /** The state. */
-   private String state; 
+   private StateAdoption state; 
    
    /** The request date. */
    private LocalDate requestDate;
@@ -34,7 +34,7 @@ public class Adoption {
     * @param dogID the dog ID
     * @param state the state
     */
-   public Adoption(String guestID, int dogID, String state) {
+   public Adoption(String guestID, int dogID, StateAdoption state) {
 		setGuestID(guestID);
 		setDogID(dogID);
 		setState(state);
@@ -127,7 +127,7 @@ public void setEmployeeID(int employeeID) {
  *
  * @return the state
  */
-public String getState() {
+public StateAdoption getState() {
 	return state;
 }
 
@@ -137,7 +137,7 @@ public String getState() {
  *
  * @param state the new state
  */
-public void setState(String state) {
+public void setState(StateAdoption state) {
 	this.state = state;
 }
 

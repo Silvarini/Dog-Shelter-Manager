@@ -29,7 +29,7 @@
 				<Font size="15.0" />
 			</font>
 		</Text>
-		<Button layoutX="589.0" layoutY="76.0" mnemonicParsing="false" onAction="#InsertDogPushed" prefHeight="32.0" prefWidth="94.0" text="Insert Dog" />
+		<Button layoutX="589.0" layoutY="51.0" mnemonicParsing="false" onAction="#InsertDogPushed" prefHeight="20.0" prefWidth="94.0" text="Insert Dog" />
 		<Label fx:id="eNameLabel" layoutX="186.0" layoutY="26.0" text="Label">
 			<font>
 				<Font size="14.0" />
@@ -45,7 +45,7 @@
 				<Font size="14.0" />
 			</font>
 		</Label>
-		<Button layoutX="621.0" layoutY="20.0" mnemonicParsing="false" onAction="#logoutButton" prefHeight="32.0" prefWidth="62.0" text="Log Out" />
+		<Button layoutX="621.0" layoutY="14.0" mnemonicParsing="false" onAction="#logoutButton" prefHeight="20.0" prefWidth="62.0" text="Log Out" />
 		<ImageView fx:id="photo" fitHeight="78.0" fitWidth="82.0" layoutX="38.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" />
       <TabPane layoutX="14.0" layoutY="117.0" prefHeight="364.0" prefWidth="690.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -60,8 +60,7 @@
                   				<TableColumn fx:id="idDColumn" editable="false" prefWidth="62.0" resizable="false" text="Dog ID" />
                   				<TableColumn fx:id="stateAColumn" editable="false" prefWidth="171.0" resizable="false" text="State" />
                   				<TableColumn fx:id="dateColumn" editable="false" prefWidth="160.0" resizable="false" text="Date" />
-                  
-                                    			</columns>
+                 			</columns>
                   		</TableView>
                      </children>
                   </AnchorPane>
@@ -84,7 +83,25 @@
                   </AnchorPane>
             </content>
           </Tab>
+          <Tab text="Events">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                  		<TableView fx:id="Events"  prefHeight="339.0" prefWidth="690.0">
+                  			<columns>
+                  				<TableColumn fx:id="id" editable="false" prefWidth="72.0" resizable="false" text="ID" />
+                  				<TableColumn fx:id="title" editable="false" prefWidth="239.99998474121094" resizable="false" text="Title" />
+                  				<TableColumn fx:id="date" editable="false" prefWidth="159.20001220703125" resizable="false" text="Date" />
+                  				<TableColumn fx:id="Nmax" editable="false" prefWidth="117.5999755859375" resizable="false" text="Nº Max" />
+                  				<TableColumn fx:id="Nvol" editable="false" prefWidth="104.79998779296875" resizable="false" text="Nº Vol." />
+                             </columns>
+                  		</TableView>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
         </tabs>
       </TabPane>
+      <Button layoutX="589.0" layoutY="85.0" mnemonicParsing="false" onAction="#onCreateEventPressed" prefHeight="25.0" prefWidth="94.0" text="Create Event" />
 	</children>
 </Pane>

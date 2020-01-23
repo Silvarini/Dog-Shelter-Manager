@@ -23,22 +23,22 @@ public class Dog {
 	private String name;
 	
 	/** The breed. */
-	private String breed;
+	private Breed breed;
 	
 	/** The age. */
-	private String age;
+	private AgeClass age;
 	
 	/** The gender. */
-	private String gender;
+	private Gender gender;
 	
 	/** The size. */
-	private String size;
+	private Size size;
 	
 	/** The coat length. */
-	private String coat;
+	private CoatLength coat;
 	
 	/** The good with. */
-	private String goodw;
+	private GoodWith goodw;
 	
 	/** The Observation. */
 	private String Obs;
@@ -47,7 +47,7 @@ public class Dog {
 	private File photo;
 	
 	/** The state. */
-	private String state;
+	private StateDog state;
 	
 	
 	
@@ -62,8 +62,9 @@ public class Dog {
  * @param coat the coat
  * @param goodw the goodw
  * @param Obs the obs
+ * @param state the state
  */
-public Dog(String name, String breed, String age, String gender, String size, String coat, String goodw, String Obs) {
+public Dog(String name, Breed breed, AgeClass age, Gender gender, Size size, CoatLength coat, GoodWith goodw, String Obs, StateDog state) {
 		setName(name);
 		setBreed(breed);
 		setAge(age);
@@ -72,7 +73,7 @@ public Dog(String name, String breed, String age, String gender, String size, St
 		setCoat(coat);
 		setGoodw(goodw);
 		setObs(Obs);
-		setState("not adopted");
+		setState(state);
 		setPhoto(new File("src/pt/iade/dsm/images/DefaultDog.png"));
 	}
 
@@ -87,12 +88,12 @@ public Dog(String name, String breed, String age, String gender, String size, St
  * @param coat the coat
  * @param goodw the goodw
  * @param Obs the obs
+ * @param state the state
  * @param photo the photo
  * @throws IOException Signals that an I/O exception has occurred.
  */
-public Dog(String name, String breed, String age, String gender, String size, String coat, String goodw, String Obs, File photo) throws IOException {
-	this(name,breed,age,gender,size,coat,goodw,Obs);
-	setState(state);
+public Dog(String name, Breed breed, AgeClass age, Gender gender, Size size, CoatLength coat, GoodWith goodw, String Obs, File photo, StateDog state) throws IOException {
+	this(name,breed,age,gender,size,coat,goodw,Obs,state);
 	setPhoto(photo);
 	copyImageFile();
 	
@@ -134,10 +135,10 @@ public String getName() {
  * @param name the new name
  */
 public void setName(String name) {
-	if(name.length()>0 && name.length()<15)		
+	if(name.length()>0 && name.length()<15 && name.matches("[a-zA-Z]+"))		
 		this.name = name;
 	else 
-		throw new IllegalArgumentException("The name must be shorter than 15 characters");
+		throw new IllegalArgumentException("The name must be shorter than 15 characters and should not contain special characteres or numbers.");
 }
 
 
@@ -147,7 +148,7 @@ public void setName(String name) {
  *
  * @return the breed
  */
-public String getBreed() {
+public Breed getBreed() {
 	return breed;
 }
 
@@ -158,7 +159,7 @@ public String getBreed() {
  *
  * @param breed the new breed
  */
-public void setBreed(String breed) {
+public void setBreed(Breed breed) {
 	this.breed = breed;
 }
 
@@ -169,7 +170,7 @@ public void setBreed(String breed) {
  *
  * @return the age
  */
-public String getAge() {
+public AgeClass getAge() {
 	return age;
 }
 
@@ -180,7 +181,7 @@ public String getAge() {
  *
  * @param age the new age
  */
-public void setAge(String age) {
+public void setAge(AgeClass age) {
 	this.age = age;
 }
 	
@@ -191,7 +192,7 @@ public void setAge(String age) {
  *
  * @return the gender
  */
-public String getGender() {
+public Gender getGender() {
 	return gender;
 }
 
@@ -202,7 +203,7 @@ public String getGender() {
  *
  * @param gender the new gender
  */
-public void setGender(String gender) {
+public void setGender(Gender gender) {
 	this.gender = gender;
 }
 
@@ -213,7 +214,7 @@ public void setGender(String gender) {
  *
  * @return the size
  */
-public String getSize() {
+public Size getSize() {
 	return size;
 }
 
@@ -224,7 +225,7 @@ public String getSize() {
  *
  * @param size the new size
  */
-public void setSize(String size) {
+public void setSize(Size size) {
 	this.size = size;
 }
 
@@ -235,7 +236,7 @@ public void setSize(String size) {
  *
  * @return the coat 
  */
-public String getCoat() {
+public CoatLength getCoat() {
 	return coat;
 }
 
@@ -246,7 +247,7 @@ public String getCoat() {
  *
  * @param coat the new coat
  */
-public void setCoat(String coat) {
+public void setCoat(CoatLength coat) {
 	this.coat = coat;
 }
 
@@ -257,7 +258,7 @@ public void setCoat(String coat) {
  *
  * @return the goodw
  */
-public String getGoodw() {
+public GoodWith getGoodw() {
 	return goodw;
 }
 
@@ -268,7 +269,7 @@ public String getGoodw() {
  *
  * @param goodw the new goodw
  */
-public void setGoodw(String goodw) {
+public void setGoodw(GoodWith goodw) {
 	this.goodw = goodw;
 }
 
@@ -322,7 +323,7 @@ public void setObs(String obs) {
  *
  * @return the state
  */
-public String getState() {
+public StateDog getState() {
 	return state;
 }
 
@@ -331,7 +332,7 @@ public String getState() {
  *
  * @param state the new state
  */
-public void setState(String state) {
+public void setState(StateDog state) {
 	this.state = state;
 }
 

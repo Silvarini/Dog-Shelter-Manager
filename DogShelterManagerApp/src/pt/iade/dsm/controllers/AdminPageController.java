@@ -21,7 +21,9 @@ import pt.iade.dsm.DAO.HistoricDAO;
 import pt.iade.dsm.models.Adoption;
 import pt.iade.dsm.models.Dog;
 import pt.iade.dsm.models.Employee;
-import pt.iade.dsm.models.State;
+import pt.iade.dsm.models.EmployeePosition;
+import pt.iade.dsm.models.Gender;
+import pt.iade.dsm.models.Historic;
 
 /**
  * This class is the controller for the admin page 
@@ -88,13 +90,13 @@ public class AdminPageController implements Initializable{
     @FXML
     private TableColumn<Employee, String> birthdateEColumn;
 
-    /** The  column position held by the Employee */
+    /**  The  column position held by the Employee. */
     @FXML
-    private TableColumn<Employee, String> phColumn;
+    private TableColumn<Employee, EmployeePosition> phColumn;
 
     /** The gender Employee column. */
     @FXML
-    private TableColumn<Employee, String> genderEColumn;
+    private TableColumn<Employee, Gender> genderEColumn;
 
     /** The username column. */
     @FXML
@@ -108,27 +110,27 @@ public class AdminPageController implements Initializable{
     
     /** The historic table. */
     @FXML
-    private TableView<State> historicTable;
+    private TableView<Historic> historicTable;
 
-    /** The column id   */
+    /**  The column id. */
     @FXML
-    private TableColumn<State, String> id;
+    private TableColumn<Historic, String> id;
 
-    /** The column state of the Dog  */
+    /**  The column state of the Dog. */
     @FXML
-    private TableColumn<State, String> stateH;
+    private TableColumn<Historic, String> stateH;
 
-    /** The column id Dog */
+    /**  The column id Dog. */
     @FXML
-    private TableColumn<State, String> idD;
+    private TableColumn<Historic, String> idD;
 
-    /** The id Employee */
+    /**  The id Employee. */
     @FXML
-    private TableColumn<State, String> idE;
+    private TableColumn<Historic, String> idE;
 
-    /** The date of changes */
+    /**  The date of changes. */
     @FXML
-    private TableColumn<State, String> dateH;
+    private TableColumn<Historic, String> dateH;
     
     
         
@@ -157,6 +159,7 @@ public class AdminPageController implements Initializable{
     private TableColumn<Adoption, String> date;
 
     
+    /** The filter. */
     @FXML
     private TextField filter;
 
@@ -165,15 +168,18 @@ public class AdminPageController implements Initializable{
      * Button that opens employee creation page.
      *
      * @param event the event
-     * @throws IOException Signals that an I/O exception has occurred.
      */
     @FXML
-    void CNEmployeePushed(ActionEvent event) throws IOException {
-    	SceneChanger.openWindow("views/CreateEmployee.fxml",new NewEmployeeController(), event);
+    void CNEmployeePushed(ActionEvent event)  {
+    	try {
+			SceneChanger.openWindow("views/CreateEmployee.fxml",new NewEmployeeController(), event);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
 
     /**
-     * Button to Log out.
+     * Button, Returns to Landing Page.
      *
      * @param event the event
      * @throws IOException Signals that an I/O exception has occurred.
@@ -183,11 +189,20 @@ public class AdminPageController implements Initializable{
     	SceneChanger.openWindow("views/LandingPage.fxml", new LandingPageController(), event);
     }
 
+	/**
+	 * Initialize.
+	 *
+	 * @param location the location
+	 * @param resources the resources
+	 */
 	/* 
 	 * Called to initialize a controller after its root element has been completely processed.
 	 * 
 	 * This method sets all value's directory for the table's cells and set the values that gets
 	 * from the DAO classes.
+	 * 
+	 * There is a table with all the dogs, all the adoptions, a table with all employees and the historic
+	 * of all state changes of dogs. 
 	 * 
 	 * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
 	 */
@@ -207,8 +222,8 @@ public class AdminPageController implements Initializable{
 		idEColumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("employeeID"));
 		nameEColumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("name"));
 		birthdateEColumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("birthdate"));
-		phColumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("pos_held"));
-		genderEColumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("gender"));
+		phColumn.setCellValueFactory(new PropertyValueFactory<Employee, EmployeePosition>("pos_held"));
+		genderEColumn.setCellValueFactory(new PropertyValueFactory<Employee, Gender>("gender"));
 		unColumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("username"));
 		pwColumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("password"));
 		
@@ -218,45 +233,61 @@ public class AdminPageController implements Initializable{
 		adoptionState.setCellValueFactory(new PropertyValueFactory<Adoption, String>("state"));
 		date.setCellValueFactory(new PropertyValueFactory<Adoption, String>("requestDate"));
 		
-		id.setCellValueFactory(new PropertyValueFactory<State, String>("id"));
-		stateH.setCellValueFactory(new PropertyValueFactory<State, String>("state"));
-		idD.setCellValueFactory(new PropertyValueFactory<State, String>("dogID"));
-		idE.setCellValueFactory(new PropertyValueFactory<State, String>("employeeID"));
-		dateH.setCellValueFactory(new PropertyValueFactory<State, String>("initialDate"));
+		id.setCellValueFactory(new PropertyValueFactory<Historic, String>("id"));
+		stateH.setCellValueFactory(new PropertyValueFactory<Historic, String>("state"));
+		idD.setCellValueFactory(new PropertyValueFactory<Historic, String>("dogID"));
+		idE.setCellValueFactory(new PropertyValueFactory<Historic, String>("employeeID"));
+		dateH.setCellValueFactory(new PropertyValueFactory<Historic, String>("initialDate"));
+		
+		/*
+		 * Loads all the dogs. 
+		 * */
 		
 		try {
-			tableDog.getItems().addAll(DogDAO.loadDogs());
+			tableDog.setItems(DogDAO.loadDogs());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		/*
+		 * Loads all the adoptions.
+		 * */
+
+		try {
+			adoptionsProcess.setItems(AdoptionRequestDAO.loadAdoptionRequests());
+		} catch (SQLException e) {
+			e.printStackTrace();
+			}
+
+		/*
+		 * Loads all the state changes on dogs.
+		 * */
+		
+		
+		try {
+			historicTable.setItems(HistoricDAO.loadState());
 		} catch (SQLException e) {
 			e.printStackTrace();
 			}
 	
+
+		/*
+		 * Loads all employees.
+		 * */
 		
 		try {
-			adoptionsProcess.getItems().addAll(AdoptionRequestDAO.loadAdoptionRequests());
+			tableEmployee.setItems(EmployeeDAO.loadEmployees());
 		} catch (SQLException e) {
 			e.printStackTrace();
-			}
-		 
-		
-		try {
-			historicTable.getItems().addAll(HistoricDAO.loadState());
-		} catch (SQLException e) {
-			e.printStackTrace();
-			}
-	
-		try {
-			tableEmployee.getItems().addAll(EmployeeDAO.loadEmployees());
 		} catch (IOException e) {
 			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-	
 		}
 		
+	
 				
 		//Dog table filter
 		try {
-			FilteredList<Dog> filteredData = new FilteredList<>( DogDAO.loadAdoptableDogs(), p -> true);
+			FilteredList<Dog> filteredData = new FilteredList<>( DogDAO.loadDogs(), p -> true);
 		
 
         // 2. Set the filter Predicate whenever the filter changes.

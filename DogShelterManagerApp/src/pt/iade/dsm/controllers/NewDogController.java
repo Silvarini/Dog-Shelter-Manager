@@ -27,8 +27,16 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import pt.iade.dsm.DAO.DogDAO;
 import pt.iade.dsm.DAO.HistoricDAO;
+import pt.iade.dsm.models.AgeClass;
+import pt.iade.dsm.models.Breed;
+import pt.iade.dsm.models.CoatLength;
 import pt.iade.dsm.models.Dog;
-import pt.iade.dsm.models.State;
+import pt.iade.dsm.models.Employee;
+import pt.iade.dsm.models.Gender;
+import pt.iade.dsm.models.GoodWith;
+import pt.iade.dsm.models.Historic;
+import pt.iade.dsm.models.Size;
+import pt.iade.dsm.models.StateDog;
 
 /**
  * This is the controller for the new dog's scene.
@@ -41,27 +49,29 @@ public class NewDogController implements Initializable{
 
     /** The dog breed choice box. */
     @FXML
-    private ChoiceBox<String> dogBreed;
+    private ChoiceBox<Breed> dogBreed;
 
     /** The dog gender choice box. */
     @FXML
-    private ChoiceBox<String> dogGender;
+    private ChoiceBox<Gender> dogGender;
 
     /** The dog size choice box. */
     @FXML
-    private ChoiceBox<String> dogSize;
+    private ChoiceBox<Size> dogSize;
 
     /** The dog coat length choice box. */
     @FXML
-    private ChoiceBox<String> dogCL;
+    private ChoiceBox<CoatLength> dogCL;
 
     /** The dog good with choice box. */
     @FXML
-    private ChoiceBox<String> dogGw;
+    private ChoiceBox<GoodWith> dogGw;
 
     /** The dog age choice box. */
     @FXML
-    private ChoiceBox<String> dogAge;
+    private ChoiceBox<AgeClass> dogAge;
+    
+
     
     /** The Observation text field. */
     @FXML
@@ -85,16 +95,30 @@ public class NewDogController implements Initializable{
     /** The image file changed. */
     boolean imageFileChanged;
         
+    /** The employee. */
+    private Employee employee;
+    
     
     /**
-     * This method changes scene into employee's page
+     * Instantiates a new new dog controller.
+     *
+     * @param employee the employee
+     */
+    public NewDogController(Employee employee) {
+		this.employee = employee;
+	}
+    
+    
+    
+    /**
+     * This method changes scene into employee's page.
      *
      * @param event the event
      * @throws IOException Signals that an I/O exception has occurred.
      */
     @FXML
     void onBackClicked(MouseEvent event) throws IOException {
-    	SceneChanger.openWindow("views/EmployeePage.fxml", new EmployeePageController(), event);
+    	SceneChanger.openWindow("views/EmployeePage.fxml", new EmployeePageController(employee), event);
     }
   
       
@@ -114,19 +138,18 @@ public class NewDogController implements Initializable{
 
     	Optional<ButtonType> result = alert.showAndWait();
     	if (result.get() == ButtonType.OK){
+    	
+    		/*Inserts the new dog's information in Dog and Historic table*/	
     	try 
     	{
-    	Dog dog = new Dog(DogName_tf.getText(),dogBreed.getValue().toString(),dogAge.getValue().toString(),dogGender.getValue().toString(),
-    					  dogSize.getValue().toString(),dogCL.getValue().toString(),dogGw.getValue().toString(),obsField.getText(),imageFile);
-		DogDAO.insertDogIntoDB(dog);
+    	Dog dog = new Dog(DogName_tf.getText(),dogBreed.getValue(), dogAge.getValue(),dogGender.getValue(),
+    					  dogSize.getValue(),dogCL.getValue(),dogGw.getValue(),obsField.getText(),imageFile,new StateDog(4,"not adopted"));
+    	
+			Historic historic = new Historic(new StateDog(4,"not adopted"), DogDAO.insertDogIntoDB(dog,dogAge.getValue(),dogBreed.getValue(),dogCL.getValue(),dogGender.getValue(),dogSize.getValue(),dogGw.getValue(),new StateDog(4,"not adopted")), employee.getEmployeeID());	
+			HistoricDAO.insertStateDB(historic, new StateDog(4,"not adopted"));	
 		
-		for (Dog newDog: DogDAO.loadDogs()) {
-			if(newDog.getName().equals(DogName_tf.getText())) {
-			State state = new State(newDog.getState(), newDog.getId(), LoginInController.getEmployee().getEmployeeID());	
-			HistoricDAO.insertStateDB(state);		
-			}
-		}
-		SceneChanger.openWindow("views/EmployeePage.fxml", new EmployeePageController(), event);
+		
+		SceneChanger.openWindow("views/EmployeePage.fxml", new EmployeePageController(employee), event);
 		}
     	catch (Exception e){
     		saveInfo.setText(e.getMessage());	
@@ -134,7 +157,10 @@ public class NewDogController implements Initializable{
     	}
     }
 
-    /**
+    
+
+
+	/**
      * On upload photo.
      *
      * @param event the event
@@ -196,7 +222,7 @@ public class NewDogController implements Initializable{
      * @param resources the resources
      */
     @Override
-    public void initialize(URL location, ResourceBundle resources) { 	
+    public void initialize(URL location, ResourceBundle resources){ 	
     	
     	
     //Show default image for Dog	
@@ -221,24 +247,20 @@ public class NewDogController implements Initializable{
     	 * 
     	 * */
     	
-    	String gw[] = {"Dogs","Kids","All Species","None","Birds","Cats"};
-    	dogGw.getItems().addAll(gw);
+    	dogGw.setItems(GoodWith.loadGoodWith());
 		
-    	String age[] = {"Puppy","Young","Adult","Senior"};
-		dogAge.getItems().addAll(age);
+		dogAge.setItems(AgeClass.loadAgeClass());
 		
-		String breed[] = {"Beagle","Boerboel","Anatolian Sheperd","Bullboxer Pit","Cane Corso","Dachsador","Labradane","Corgi"};
-		dogBreed.getItems().addAll(breed);
+		dogBreed.setItems(Breed.loadBreeds());
 		
-		String size[] = {"XS","small","medium","large","XL"};
-		dogSize.getItems().addAll(size);
+		dogSize.setItems(Size.loadSizes());
 		
-		dogGender.getItems().add("Male");
-		dogGender.getItems().add("Female");
+		dogGender.setItems(Gender.getGenders());
 		
-		dogCL.getItems().add("small");
-		dogCL.getItems().add("medium");
-		dogCL.getItems().add("large");
+		dogCL.setItems(CoatLength.loadCoatLengths());
+		
+		
+		
 		
 		
 	}

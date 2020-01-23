@@ -68,7 +68,7 @@
                      <children>
                         <VBox layoutX="14.0" layoutY="16.0" prefHeight="330.0" prefWidth="696.0">
                            <children>
-                              <TableView fx:id="adoptionsCompleted" prefHeight="410.0" prefWidth="696.0">
+                              <TableView fx:id="adoptionsProcess" prefHeight="410.0" prefWidth="696.0">
                                 <columns>
                                   <TableColumn fx:id="adoptionID" editable="false" prefWidth="43.0" resizable="false" text="ID" />
                                   <TableColumn fx:id="guest" editable="false" prefWidth="156.0" resizable="false" text="Guest" />

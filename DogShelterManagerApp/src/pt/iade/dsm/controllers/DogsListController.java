@@ -56,6 +56,17 @@ public class DogsListController implements Initializable{
 	/** The dog. */
 	private static Dog dog;
 
+	
+	/**
+	 * Sets the dog.
+	 *
+	 * @param dog the new dog
+	 */
+	/*This constructor sends information into the Dog object*/
+	public static void setDog(Dog dog) {
+		DogsListController.dog = dog;
+	}
+
 
 	/**
 	 * This method reads the user's selection from table to open the dog's profile,.
@@ -66,9 +77,10 @@ public class DogsListController implements Initializable{
 	@FXML
 	void dogSelected(MouseEvent event) throws IOException {
 		 setDog(tableDog.getSelectionModel().getSelectedItem());
-		 SceneChanger.openWindow("views/DogProfile.fxml", new DogProfileController(), event);
+		 SceneChanger.openWindow("views/DogProfile.fxml", new DogProfileController(dog), event);
 	}
 		
+
 
 	/**
 	 * This method returns the page into the Landing page, when the logo gets clicked.
@@ -95,7 +107,7 @@ public class DogsListController implements Initializable{
 		genderColumn.setCellValueFactory(new PropertyValueFactory<Dog, String>("gender"));
 		ageColumn.setCellValueFactory(new PropertyValueFactory<Dog, String>("age"));
 		
-		
+		/*Loads all dogs that can be adopted*/
 		try {	
 				tableDog.getItems().addAll(DogDAO.loadAdoptableDogs());				
 		} catch (SQLException e) {
@@ -140,31 +152,8 @@ public class DogsListController implements Initializable{
         // 5. Add sorted (and filtered) data to the table.
         tableDog.setItems(sortedData);
 	}catch (SQLException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
 		}
-
-
-	/**
-	 * Gets the dog.
-	 *
-	 * @return the dog
-	 */
-	public static Dog getDog() {
-		return dog;
-	}
-
-
-	/**
-	 * Sets the dog.
-	 *
-	 * @param dog the new dog
-	 */
-	public static void setDog(Dog dog) {
-		DogsListController.dog = dog;
-	}
-
-
 
 }

@@ -1,6 +1,6 @@
 package pt.iade.dsm.communication;
 
-
+/*
 
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
@@ -13,7 +13,7 @@ import com.twilio.type.PhoneNumber;
  * 
  * */
 
-public class PhoneMessage {
+/*public class PhoneMessage {
 	
 	  // Find your Account Sid and Token at twilio.com/user/account
 	  public static final String ACCOUNT_SID = "AC75c630888bf429454f670697283a3124";
@@ -21,17 +21,17 @@ public class PhoneMessage {
 
 	  
 	  
-	  public static void sendMsg(String phone) {
+	  public static void sendMsg() {
 	    Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
 
-	    Message message = Message.creator(new PhoneNumber(phone),
+	    Message message = Message.creator(new PhoneNumber("351962164544"),
 	    								  new PhoneNumber("+18316619150"),
 	    								  "Funcionou").create();
 
 	    System.out.println(message.getSid());
 	  }
 }
-	  
+	  */
 	  
 	
 

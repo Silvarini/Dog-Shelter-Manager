@@ -1,8 +1,10 @@
 package pt.iade.dsm.controllers;
+
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import javax.imageio.ImageIO;
@@ -12,11 +14,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -24,6 +29,8 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import pt.iade.dsm.DAO.EmployeeDAO;
 import pt.iade.dsm.models.Employee;
+import pt.iade.dsm.models.EmployeePosition;
+import pt.iade.dsm.models.Gender;
 
 /**
  * This class is the controller for the new employee scene.
@@ -55,12 +62,12 @@ public class NewEmployeeController implements Initializable {
 
 	/** The Sex choice box. */
 	@FXML
-    private ChoiceBox<String> Sex;
+    private ChoiceBox<Gender> Sex;
     
    
     /** The Role choice box. */
     @FXML
-    private ChoiceBox<String> Role;
+    private ChoiceBox<EmployeePosition> Role;
     
     
     /** The Photo view. */
@@ -104,17 +111,27 @@ public class NewEmployeeController implements Initializable {
      */
     @FXML
     void onSaveButtonPushed(ActionEvent event) {
+    	
+    	Alert alert = new Alert(AlertType.CONFIRMATION);
+    	alert.setTitle("Confirmation");
+    	alert.setHeaderText("Confirm");
+    	alert.setContentText("Do you want to submit the information?");
+
+    	Optional<ButtonType> result = alert.showAndWait();
+    	if (result.get() == ButtonType.OK){
+    	
+    		/*Condition where the password text field and password confirmation are compared*/
     	try {
     		if(!passwordTextField.getText().equals(confirmPasswordTextField.getText()))
     			{
     			errorMsg.setText("The passwords does not match");
     			}
+    		/*Uploads the new employee's information*/
     		else {
-    			Employee employee = new Employee(NameTextField.getText(),usernameTextField.getText(),passwordTextField.getText(),Sex.getValue().toString(),Birthdate.getValue(),Role.getValue().toString(),
+    			Employee employee = new Employee(NameTextField.getText(),usernameTextField.getText(),passwordTextField.getText(),Sex.getValue(),Birthdate.getValue(),Role.getValue(),
     				imageFile);
-    			EmployeeDAO.insertEmployeeIntoDB(employee);
+    			EmployeeDAO.insertEmployeeIntoDB(employee, Sex.getValue(), Role.getValue());
     			errorMsg.setText("The employee was created successfully");
-    			Thread.sleep(3000);
     			SceneChanger.openWindow("views/AdminPage.fxml", new AdminPageController(), event);
     			}
 		} catch (Exception e) {
@@ -122,7 +139,7 @@ public class NewEmployeeController implements Initializable {
 			errorMsg.setText(e.getMessage());
 		}
     	
-    	
+    	}
     }  
     
     /**
@@ -205,12 +222,10 @@ public class NewEmployeeController implements Initializable {
 	    	
 		 }
 		
-		
-		Sex.getItems().add("Male");
-		Sex.getItems().add("Female");
-		
-		Role.getItems().add("Administrador");
-		Role.getItems().add("Funcionário");
+		 /*Inserts into choice boxes sex and role their values from database*/
+		 Sex.setItems(Gender.getGenders());
+		 
+		 Role.setItems(EmployeePosition.getPositions());
 		
 		errorMsg.setText("");
 		

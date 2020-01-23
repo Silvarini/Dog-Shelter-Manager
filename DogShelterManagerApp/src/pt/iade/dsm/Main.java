@@ -6,10 +6,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import pt.iade.dsm.controllers.LandingPageController;
+
 /*
  * Dog Shelter Manager
  * @author N'zembo 50039011 & Bernardo 50039481
- * 
  * 
  * This is the main class.
  * */

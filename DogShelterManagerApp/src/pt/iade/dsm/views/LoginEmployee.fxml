@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="400" maxWidth="600" minHeight="400" minWidth="600" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="405.0" layoutY="23.0" prefHeight="43.0" prefWidth="108.0" text="Login In">
          <font>
@@ -20,12 +20,12 @@
       <Label layoutX="342.0" layoutY="105.0" text="Username:" />
       <Label layoutX="344.0" layoutY="144.0" text="Password:" />
       <PasswordField fx:id="Password_field" layoutX="405.0" layoutY="140.0" />
-      <Button layoutX="506.0" layoutY="181.0" mnemonicParsing="false"  onMouseClicked="#LoginPushed" text="Login" />
+      <Button layoutX="506.0" layoutY="181.0" mnemonicParsing="false" onMouseClicked="#LoginPushed" text="Login" />
       <Label fx:id="BackButton" layoutX="529.0" layoutY="358.0" onMouseClicked="#onBackClicked" text="Back" underline="true" />
       <Label fx:id="ErrorMessage" layoutX="344.0" layoutY="213.0" text="Label" />
-      <ImageView fitHeight="400.0" fitWidth="339.0">
+      <ImageView fitHeight="291.0" fitWidth="271.0" layoutX="29.0" layoutY="45.0">
          <image>
-            <Image url="@../../../Dog.png" />
+            <Image url="@../../../../../bin/pt/iade/dsm/images/DSM%20logo.jpeg" />
          </image>
       </ImageView>
    </children>

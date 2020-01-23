@@ -56,8 +56,20 @@ public class DogProfileController implements Initializable {
     /** The dog. */
     private Dog dog;
     
+    
+    
    
     /**
+     * Instantiates a new dog profile controller.
+     *
+     * @param dog the dog
+     */
+    public DogProfileController(Dog dog) {
+		this.dog = dog;
+	}
+
+
+	/**
      * On back clicked, returns to Dog Page.
      *
      * @param event the event
@@ -77,7 +89,7 @@ public class DogProfileController implements Initializable {
      */
     @FXML
     void AdoptPushed(ActionEvent event) throws IOException {
-    PopUpDisplayer.showPopupWindow("views/AdoptionPopUp.fxml",new AdoptionPopUpController());
+    PopUpDisplayer.showPopupWindow("views/AdoptionPopUp.fxml",new AdoptionPopUpController(dog));
     	
     }
 
@@ -89,8 +101,6 @@ public class DogProfileController implements Initializable {
 	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		dog=DogsListController.getDog();
-		
 		nameLabel.setText("Hi I'm "+dog.getName());
 		idLabel.setText("ID #"+String.valueOf(dog.getId()));
 		
@@ -101,7 +111,7 @@ public class DogProfileController implements Initializable {
 		
 		/*Directory and setup for the dog's image*/
 		 try{
-	            String imgLocation = "src/pt/iade/dsm/images/Dogs/" + DogsListController.getDog().getPhoto().getName();
+	            String imgLocation = "src/pt/iade/dsm/images/Dogs/" + dog.getPhoto().getName();
 	            File imageFile = new File(imgLocation);
 	            BufferedImage bufferedImage = ImageIO.read(imageFile);
 	            Image image = SwingFXUtils.toFXImage(bufferedImage, null);

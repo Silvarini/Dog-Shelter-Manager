@@ -16,7 +16,7 @@ import pt.iade.dsm.DAO.EmployeeDAO;
 import pt.iade.dsm.models.Employee;
 
 /**
- * This class is the log in's page controller
+ * This class is the log in's page controller.
  */
 public class LoginInController implements Initializable{
 
@@ -69,15 +69,16 @@ public class LoginInController implements Initializable{
     	{
     		employee=EmployeeDAO.VerifyLogin(Username_txfield.getText(), Password_field.getText(), employee);
     		
-    		if(employee!=null && employee.getPassword().equals(Password_field.getText())) {
-    			if(employee.getPos_held().equals("Administrador"))
+    		if(employee!=null) {
+    			if(employee.getPos_held().getPosition().equals("Administrador"))
+    				
     				{
     					SceneChanger.openWindow("views/AdminPage.fxml", new AdminPageController(), event);
     				}
     			
-    			else if(employee.getPos_held().equals("Funcionário"))
+    			else if(employee.getPos_held().getPosition().equals("Funcionário"))
     				{
-    					SceneChanger.openWindow("views/EmployeePage.fxml", new EmployeePageController(), event);
+    					SceneChanger.openWindow("views/EmployeePage.fxml", new EmployeePageController(employee), event);
     				}
     			
     	}
@@ -106,18 +107,14 @@ public class LoginInController implements Initializable{
 	 *
 	 * @return the employee
 	 */
-	public static Employee getEmployee() {
-		return employee;
-	}
+
 
 	/**
 	 * Sets the employee.
 	 *
 	 * @param employee the new employee
 	 */
-	public static void setEmployee(Employee employee) {
-		LoginInController.employee = employee;
-	}
+	
 
 	
 

@@ -20,7 +20,7 @@ public class Employee {
 		private int employeeID;
 		
 		/** The Name. */
-		private String  Name;
+		private String  name;
 		
 		/** The username. */
 		private String username;
@@ -29,10 +29,10 @@ public class Employee {
 		private String password;
 		
 		/** The gender. */
-		private String gender;
+		private Gender gender;
 		
 		/** The position held. */
-		private String pos_held;
+		private EmployeePosition pos_held;
 		
 		/** The birthdate. */
 		private LocalDate birthdate;
@@ -51,8 +51,8 @@ public class Employee {
 			 * @param pos_held the pos held
 			 * @throws IOException Signals that an I/O exception has occurred.
 			 */
-			public Employee(String name, String username, String password, String gender,
-							LocalDate birthdate, String pos_held) throws IOException {
+			public Employee(String name, String username, String password, Gender gender,
+							LocalDate birthdate, EmployeePosition pos_held) throws IOException {
 				
 				setName(name);
 				setUsername(username);
@@ -76,8 +76,8 @@ public class Employee {
 			 * @param photo the photo
 			 * @throws IOException Signals that an I/O exception has occurred.
 			 */
-			public Employee(String name, String username, String password, String gender,
-							LocalDate birthdate, String pos_held, File photo) throws IOException {
+			public Employee(String name, String username, String password, Gender gender,
+							LocalDate birthdate, EmployeePosition pos_held, File photo) throws IOException {
 				
 				this(name,username,password,gender,birthdate,pos_held);
 				setPhoto(photo);
@@ -109,7 +109,7 @@ public class Employee {
 			 * @return the name
 			 */
 			public String getName() {
-				return Name;
+				return name;
 			}
 
 			/**
@@ -118,10 +118,12 @@ public class Employee {
 			 * @param name the new name
 			 */
 			public void setName(String name) {
-				if(name.length()>50)
-					throw new IllegalArgumentException("The name is too big.");
+				if(name.length()<50 || name.matches("[a-zA-Z]+"))
+					this.name = name;
+					//throw new IllegalArgumentException("The name should not be longer than 50 characters or contain any charecter besides letters.");
 				else
-				this.Name = name;
+					throw new IllegalArgumentException("The name should not be longer than 50 characters or contain any charecter besides letters.");
+					//this.name = name;
 			}
 
 			/**
@@ -175,7 +177,7 @@ public class Employee {
 			 *
 			 * @return the gender
 			 */
-			public String getGender() {
+			public Gender getGender() {
 				return gender;
 			}
 
@@ -184,7 +186,7 @@ public class Employee {
 			 *
 			 * @param gender the new gender
 			 */
-			public void setGender(String gender) {
+			public void setGender(Gender gender) {
 				this.gender = gender;
 			}
 
@@ -239,7 +241,7 @@ public class Employee {
 			 *
 			 * @return the pos held
 			 */
-			public String getPos_held() {
+			public EmployeePosition getPos_held() {
 				return pos_held;
 			}
 
@@ -248,7 +250,7 @@ public class Employee {
 			 *
 			 * @param pos_held the new pos held
 			 */
-			public void setPos_held(String pos_held) {
+			public void setPos_held(EmployeePosition pos_held) {
 				this.pos_held = pos_held;
 			}
 
@@ -259,7 +261,7 @@ public class Employee {
 			 * @return the string
 			 */
 			public String toString () {
-				return String.format(" %s is a %s that has %d", Name, gender, Period.between(birthdate, LocalDate.now()).getYears());
+				return String.format(" %s is a %s that has %d", name, gender, Period.between(birthdate, LocalDate.now()).getYears());
 			}
 			
 			

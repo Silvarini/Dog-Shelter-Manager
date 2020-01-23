@@ -3,7 +3,6 @@ package pt.iade.dsm.models;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.sun.xml.internal.txw2.IllegalAnnotationException;
 
 /**
  * This model represents the guest.
@@ -83,7 +82,7 @@ public class Guest {
 			throw new IllegalArgumentException("The choosen characteres for the name are not allowed.");
 		
 		else
-		this.firstName = firstName;
+			this.firstName = firstName;
 	}
 
 
@@ -166,29 +165,34 @@ public class Guest {
 	/**
 	 * Checks if is valid email address.
 	 *
-	 * @param email the email
-	 * @return true, if is valid email address
 	 */
-	public boolean isValidEmailAddress(String email) {
-        String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
-        java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
-        java.util.regex.Matcher m = p.matcher(email);
-        return m.matches();
+	private static final String EMAIL_REGEX =
+			"^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+
+	private static final Pattern EMAIL_PATTERN = Pattern.compile(EMAIL_REGEX);
+
+	public static boolean emailValidator(String email) {
+
+		if (email == null) {
+			return false;
+		}
+
+		Matcher matcher = EMAIL_PATTERN.matcher(email);
+		return matcher.matches();
 	}
-	
 	/**
 	 * Sets the email.
 	 *
 	 * @param email the new email
 	 */
+	
+
 	public void setEmail(String email) {
-		if(isValidEmailAddress(email))
-		this.email = email;
-		//throw new IllegalAnnotationException("The email is not valid.");
-			else
-			throw new IllegalAnnotationException("The email is not valid.");
-			//this.email = email;
-	}
+		if(emailValidator(email))
+			this.email = email;
+		else
+			throw new IllegalArgumentException("The email is not valid.");
+		}
 
 
 
@@ -231,7 +235,7 @@ public class Guest {
 	 */
 	public void setAdress(String adress) {
 		if(adress.matches("/[!@$%^&*(),?\":{}|<>]/g"))
-			throw new IllegalArgumentException("Adress:endereï¿½o nï¿½mero andar(se houver) , CP, Cidade");
+			throw new IllegalArgumentException("Adress:endereço número andar(se houver) , CP, Cidade");
 		else
 			this.adress = adress;
 	}

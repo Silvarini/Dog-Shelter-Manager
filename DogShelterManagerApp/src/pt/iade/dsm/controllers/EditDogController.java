@@ -27,56 +27,114 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import pt.iade.dsm.DAO.DogDAO;
 import pt.iade.dsm.DAO.HistoricDAO;
+import pt.iade.dsm.models.AgeClass;
+import pt.iade.dsm.models.CoatLength;
 import pt.iade.dsm.models.Dog;
-import pt.iade.dsm.models.State;
+import pt.iade.dsm.models.Employee;
+import pt.iade.dsm.models.Historic;
+import pt.iade.dsm.models.Size;
+import pt.iade.dsm.models.StateDog;
 
 
 
 
 /*
- * This class is still in development...
+ * This class is where the Employee can edit the dog's information.
+ * 
  * 
  * */
 
+/**
+ * The Class EditDogController.
+ */
 public class EditDogController implements Initializable {
 	
+	/** The photo IV. */
+	/*Dog's photo*/
 	@FXML
     private ImageView photoIV;
+	
+	/** The size CB. */
+	/*Size choice box*/
+	@FXML
+    private ChoiceBox<Size> sizeCB;
+	
+    /** The coat CB. */
+    /*Coat length choice box*/ 
+	@FXML
+    private ChoiceBox<CoatLength> coatCB;
 
+	/** The state CB. */
+	/*The dog's state choice box*/
     @FXML
-    private ChoiceBox<String> sizeCB;
+    private ChoiceBox<StateDog> stateCB;
 
+    /** The age CB. */
+    /*The dog's age class choice box*/
     @FXML
-    private ChoiceBox<String> coatCB;
+    private ChoiceBox<AgeClass> ageCB;
 
-    @FXML
-    private ChoiceBox<String> stateCB;
-
-    @FXML
-    private ChoiceBox<String> ageCB;
-
+    /** The obs text. */
+    /*Observation box*/
     @FXML
     private TextArea obsText;
 
+    /** The name L. */
+    /*Dog's name*/
     @FXML
     private Label nameL;
 
+    /** The id L. */
+    /*Dog's id*/
     @FXML
     private Label idL;
 
+    /** The gender L. */
+    /*Dog's gender*/
     @FXML
     private Label genderL;
     
+    /** The e MSG. */
+    /*Messages of interaction with user*/
     @FXML
     private Label eMSG;
     
+    /** The image file. */
+    /*Image*/
     private File imageFile;
     
+    /** The image file changed. */
+    /*Condition of image changing*/
     boolean imageFileChanged;
     
+    /** The e dog. */
+    /*Dog object*/
     private Dog eDog;
     
+    /** The employee. */
+    /*Employee object*/
+    private Employee employee;
 
+    /**
+     * Instantiates a new edits the dog controller.
+     *
+     * @param eDog the e dog
+     * @param employee the employee
+     */
+    /*The controller's constructor*/
+	public EditDogController(Dog eDog, Employee employee) {
+		this.eDog = eDog;
+		this.employee = employee;
+	}
+
+    
+    /**
+     * On submit pushed.
+     *
+     * @param event the event
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
+    /*Button, submits the edited information of the dog*/
     @FXML
     void onSubmitPushed(ActionEvent event) throws IOException {
     	
@@ -86,6 +144,7 @@ public class EditDogController implements Initializable {
     	alert.setContentText("Do you want to submit the information?");
 
     	Optional<ButtonType> result = alert.showAndWait();
+    	/*Sets the new edited values*/
     	if (result.get() == ButtonType.OK){
     		eDog.setAge(ageCB.getValue());
     		eDog.setCoat(coatCB.getValue());
@@ -93,25 +152,40 @@ public class EditDogController implements Initializable {
     		eDog.setPhoto(imageFile);
     		eDog.setSize(sizeCB.getValue());
     		
-    		if(eDog.getState()!=stateCB.getValue()) {
-    			eDog.setState(stateCB.getValue());
-    			State newState = new State(eDog.getState(), eDog.getId(), LoginInController.getEmployee().getEmployeeID());
-    			try {
-					HistoricDAO.insertStateDB(newState);
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+    		/*If the new dog's state isn't the same as before*/
+    		if(eDog.getState()!=stateCB.getValue() && !stateCB.getValue().getState().equals("")) {
+    			
+    			/*If the dog's new state is "returned", but he was never adopted
+    			 * Or when the new dog's state is "dead", when he is already adopted
+    			 */
+    		    if(eDog.getState().getState().equals("not adopted") && stateCB.getValue().getState().equals("returned") || eDog.getState().getState().equals("adopted") && stateCB.getValue().getState().equals("dead"))
+    		    	eMSG.setText("Error 912 \n Caused by: Invalid state.");
+    		    else {
+    		    	/*Inserts the new information of the dog's state change in historic table*/
+    		    	eDog.setState(stateCB.getValue());
+    		    	Historic newState = new Historic(eDog.getState(), eDog.getId(), employee.getEmployeeID());
+    		    	try {
+    		    		HistoricDAO.insertStateDB(newState, new StateDog(eDog.getState().getStateID(), eDog.getState().getState()));
+    		    	} catch (SQLException e) {
+    		    		e.printStackTrace();
+    		    	}
+    		    	try {
+    		    		/*Updates the new information in the Dog's table*/
+    		    		DogDAO.updateDog(eDog,sizeCB.getValue(), coatCB.getValue(),ageCB.getValue(),stateCB.getValue());
+    		    	} catch (SQLException e) {
+    		    		eMSG.setText(e.getMessage());
+    		    	}	
+    		    SceneChanger.openWindow("views/EmployeePage.fxml", new EmployeePageController(employee), event);	
+    		    }
     		}
-    		
-    		try {
-				DogDAO.updateDog(eDog);
-			} catch (SQLException e) {
-				eMSG.setText(e.getMessage());
-			}	
-    	}
-    	SceneChanger.openWindow("views/EmployeePage.fxml", new EmployeePageController(), event);	
+    	}	
     }
-
+    
+    /**
+     * On upload pushed.
+     *
+     * @param event the event
+     */
     @FXML
     void onUploadPushed(ActionEvent event) {
     	//get the Stage to open a new window (or Stage in JavaFX)
@@ -160,16 +234,22 @@ public class EditDogController implements Initializable {
             }
         }
     }
-
+    
+    /**
+     * Initialize.
+     *
+     * @param arg0 the arg 0
+     * @param arg1 the arg 1
+     */
+    /*Initializes this controller's page
+     * Sets all elements of the page with values*/
 	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		eDog=EmployeePageController.getDog();
-		
+	public void initialize(URL arg0, ResourceBundle arg1) {		
 		nameL.setText(eDog.getName());
-		genderL.setText(eDog.getGender());
+		genderL.setText(eDog.getGender().getGender());
 		idL.setText(String.valueOf(eDog.getId()));
 		
-		obsText.setPromptText(eDog.getObs());
+		obsText.setText(eDog.getObs());
 		
 		eMSG.setText("");
 		 try{
@@ -184,20 +264,20 @@ public class EditDogController implements Initializable {
 	            System.err.println(e.getMessage());
 	        }
 		
-		String age[] = {"Puppy","Young","Adult","Senior"};
-			ageCB.getItems().addAll(age);
+		 /*The following represent the age, size, coat length and state's vales of the choice boxes*/
+			ageCB.setItems(AgeClass.loadAgeClass());
 			ageCB.setValue(eDog.getAge());
-		String size[] = {"XS","small","medium","large","XL"};
-			sizeCB.getItems().addAll(size);
+			
+			System.out.println(eDog.getAge());
+			
+		
+			sizeCB.setItems(Size.loadSizes());
 			sizeCB.setValue(eDog.getSize());
 			
-			coatCB.getItems().add("small");
-			coatCB.getItems().add("medium");
-			coatCB.getItems().add("large");
+			coatCB.setItems(CoatLength.loadCoatLengths());
 			coatCB.setValue(eDog.getCoat());
 			
-			stateCB.getItems().add("dead");
-			stateCB.getItems().add("returned");
+			stateCB.setItems(StateDog.getStatesHouseDogs());
 			stateCB.setValue(eDog.getState());
 	}
 

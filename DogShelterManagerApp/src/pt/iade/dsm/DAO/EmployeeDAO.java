@@ -12,6 +12,8 @@ import java.sql.Statement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import pt.iade.dsm.models.Employee;
+import pt.iade.dsm.models.EmployeePosition;
+import pt.iade.dsm.models.Gender;
 
 /**
  * This class inserts and gets values from employee's table in the database.
@@ -25,9 +27,11 @@ public class EmployeeDAO {
 	 * Insert employee into DB.
 	 *
 	 * @param employee the employee
+	 * @param gender the gender
+	 * @param position the position
 	 * @throws SQLException the SQL exception
 	 */
-	public static void insertEmployeeIntoDB(Employee employee) throws SQLException
+	public static void insertEmployeeIntoDB(Employee employee, Gender gender, EmployeePosition position) throws SQLException
 	{
 		Connection conn = DBConnector.getConnection();
 		PreparedStatement preparedStatement = null;
@@ -35,8 +39,8 @@ public class EmployeeDAO {
 		try
 		{
 			//2. Create a String that holds the query with ? as user inputs
-			String sql = "INSERT INTO Employee (nameEmployee, username, password, genderEmployee, birthdate,  positionHeld, PhotoFile)"
-					+ "VALUES (?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO Employee (nameEmployee, username, password, genderEmployee, birthdate,  positionHeld, PhotoFile)" 
+						   + "VALUES (?,?,?,?,?,?,?)";
 
 			//3. prepare the query
 			preparedStatement = conn.prepareStatement(sql);
@@ -48,9 +52,9 @@ public class EmployeeDAO {
 			preparedStatement.setString(1, employee.getName());
 			preparedStatement.setString(2, employee.getUsername());
 			preparedStatement.setString(3, employee.getPassword());
-			preparedStatement.setString(4, employee.getGender());
+			preparedStatement.setInt(4, gender.getGenderID());
 			preparedStatement.setDate(5, db);
-			preparedStatement.setString(6, employee.getPos_held());
+			preparedStatement.setInt(6, position.getPositionID());
 			preparedStatement.setString(7, employee.getPhoto().getName());
 
 			preparedStatement.executeUpdate();
@@ -85,7 +89,7 @@ public class EmployeeDAO {
 		try {
 			Statement statement = conn.createStatement();
 			//create a statement object
-			String sql = "SELECT * FROM Employee;";
+			String sql = "SELECT nameEmployee, employeeID, username,password, genderEmployee, Gender.gender, Gender.genderID, birthdate, positionHeld, EmployeePosition.position, EmployeePosition.positionID, PhotoFile FROM Employee, Gender, EmployeePosition WHERE genderEmployee = Gender.genderID AND positionHeld = EmployeePosition.positionID;";
 			//create the SQL query
 			try ( ResultSet resultSet = statement.executeQuery(sql)) {
 
@@ -95,9 +99,9 @@ public class EmployeeDAO {
 					Employee employee = new Employee(resultSet.getString("nameEmployee"), 
 							resultSet.getString("username"), 
 							resultSet.getString("password"), 
-							resultSet.getString("genderEmployee"), 
+							new Gender(resultSet.getInt("Gender.genderID"),resultSet.getString("Gender.gender")), 
 							resultSet.getDate("birthdate").toLocalDate(), 
-							resultSet.getString("positionHeld"));
+							new EmployeePosition(resultSet.getInt("EmployeePosition.positionID"), resultSet.getString("EmployeePosition.position")));
 					employee.setEmployeeID(resultSet.getInt("employeeID"));
 					employee.setPhoto(new File(resultSet.getString("PhotoFile")));
 
@@ -134,13 +138,14 @@ public class EmployeeDAO {
         try{
             
             //2.  create a query string with ? used instead of the values given by the user
-            String sql = "SELECT * FROM Employee WHERE username = ?";
+            String sql = "SELECT nameEmployee, username, password, genderEmployee, Gender.gender, Gender.genderID, birthdate, positionHeld, EmployeePosition.position, EmployeePosition.positionID, employeeID, PhotoFile FROM Employee, Gender, EmployeePosition WHERE positionHeld = EmployeePosition.positionID AND genderEmployee = Gender.genderID AND username = ? AND password = ?;";
             
             //3.  prepare the statement
             preparedStatement = conn.prepareStatement(sql);
            
             //4.
             preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
             
             
             //5. execute the query
@@ -152,9 +157,9 @@ public class EmployeeDAO {
             			 employee = new Employee(resultSet.getString("nameEmployee"), 
             									 resultSet.getString("username"), 
             									 resultSet.getString("password"), 
-            									 resultSet.getString("genderEmployee"), 
+            						new Gender(resultSet.getInt("Gender.genderID"),resultSet.getString("Gender.gender")), 
             									 resultSet.getDate("birthdate").toLocalDate(), 
-            									 resultSet.getString("positionHeld"));
+            						new EmployeePosition(resultSet.getInt("EmployeePosition.positionID"), resultSet.getString("EmployeePosition.position")));
             			 
             	employee.setEmployeeID(resultSet.getInt("employeeID"));
             	employee.setPhoto(new File(resultSet.getString("PhotoFile")));

@@ -10,16 +10,17 @@ import java.sql.SQLException;
 public class DBConnector {
 	
 	/** The Constant URL. */
-	private static final String URL = "jdbc:mysql://remotemysql.com:3306/wlgrOv9kpn?useSSL=false";
+	private static final String URL = "jdbc:mysql://remotemysql.com:3306/hBEttxy9DD?useSSL=false";
 	
 	/** The Constant PASS. */
-	private static final String PASS = "5nskyFTijx";
+	private static final String PASS = "tqHSXgfWpQ";
 	
 	/** The Constant USER. */
-	private static final String USER = "wlgrOv9kpn";
+	private static final String USER = "hBEttxy9DD";
+	
 	
 	/*
-	private static final String URL = "jdbc:mysql://localhost:3306/shelter";
+	private static final String URL = "jdbc:mysql://localhost:3306/shelter?useSSL=false";
 	private static final String PASS = "50039011";
 	private static final String USER = "root";
 	*/
