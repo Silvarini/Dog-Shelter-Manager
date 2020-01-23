@@ -1,140 +1,174 @@
-create database SHELTER;
-use SHELTER;
-
-Create table StateType (state varchar(20) not null,
-						constraint STPK primary key (state));
-	insert into StateType (state) values ("dead"),("adopted"),("returned"),("not adopted");
-
-create table Gender(Gender varchar(1),
-					constraint GenderFK primary key (Gender));
-	insert into Gender(Gender) value ("M"),("F");
+CREATE TABLE StateType (stateID int AUTO_INCREMENT not null, state varchar(20) not null,
+			constraint STPK primary key (stateID));
     
-create table CoatLengthClass(cLengthClass varchar(6),
-							constraint CLPK primary key (cLengthClass));
-	insert into CoatLengthClass(cLengthCLass) values ("small"),("medium"),("large");
+CREATE TABLE Gender(genderID int AUTO_INCREMENT not null, gender varchar(6),
+		    constraint GIPK primary key (genderID));
     
-create table GoodWith ( goodWith varchar(15),
-						constraint GWPK primary key (goodWith));
-	insert into GoodWith(goodWith) values ("Dogs"),("Kids"),("Cats"),("Birds"),("None"),("All Species");
+CREATE TABLE CoatLengthClass(cLengthClassID int AUTO_INCREMENT not null, cLengthClass varchar(6),
+			     constraint CLPK primary key (cLengthClassID));
     
-create table SizeClass (sizeClass varchar(10),
-						constraint SizePK primary key (sizeClass));
-	insert into SizeClass(sizeClass) values ("XS"),("small"),("medium"),("large"),("XL");
+CREATE TABLE GoodWith ( goodWithID int AUTO_INCREMENT not null, goodWith varchar(15),
+		        constraint GWPK primary key (goodWithID));
     
-create table Breed (breed varchar(20),
-					constraint BreedPK primary key (breed));
-	insert into Breed(breed) values ("Beagle"),("Boerboel"),("Anatolian Sheperd"),("Bullboxer Pit"),("Cane Corso"),("Dachsador"),("Labradane"),("Corgi");
+CREATE TABLE SizeClass (sizeClassID int AUTO_INCREMENT not null, sizeClass varchar(10),
+			constraint SizePK primary key (sizeClassID));
     
-create table AgeClass ( ageClass varchar(10),
-						constraint AgePK primary key (ageClass));
-	insert into AgeClass (ageClass)values ("Puppy"),("Young"),("Adult"),("Senior");
+CREATE TABLE Breed (breedID int AUTO_INCREMENT not null, breed varchar(20),
+		    constraint BreedPK primary key (breedID));
+    
+CREATE TABLE AgeClass ( ageClassID int AUTO_INCREMENT not null, ageClass varchar(10),
+			constraint AgePK primary key (ageClassID));
     
 
-Create table Dog ( nameDog varchar(20),
-				   dogID int auto_increment not null,
-                   breedDog varchar(20),
-                   ageDog varchar(10),
-                   genderDog varchar(1),
-                   sizeDog varchar(9),
-                   coatLengthDog varchar(6),
-                   goodWithDog varchar(4),
+CREATE TABLE Dog ( nameDog varchar(20),
+		   dogID int auto_increment not null,
+                   breedDog int,
+                   ageDog int,
+                   genderDog int,
+                   sizeDog int,
+                   coatLengthDog int,
+                   goodWithDog int,
                    obs text,
                    photoFile varchar(100),
-                   currentState varchar(15),
+                   currentState int,
                    
                    constraint dogPK primary key (dogID),
-                   constraint ageFK foreign key (ageDog) references AgeClass(ageCLass),
-                   constraint breedFK FOREIGN KEY (breedDog) REFERENCES Breed(breed),
-                   constraint genderFK foreign key  (genderDog) REFERENCES Gender(Gender),
-                   constraint sizeFK foreign key (sizeDog) references SizeClass(sizeClass),
-                   constraint coatFK foreign key (coatLengthDog) references CoatLengthClass(cLengthClass),
-                   constraint gwFK foreign key (goodWithDog) references GoodWith(goodWith),
-                   constraint cStateFK foreign key (currentState) references StateType(state)
+                   constraint ageFK foreign key (ageDog) references AgeClass(ageCLassID)
+		ON UPDATE CASCADE,
+                   constraint breedFK FOREIGN KEY (breedDog) REFERENCES Breed(breedID)
+		ON UPDATE CASCADE,
+                   constraint genderFK foreign key  (genderDog) REFERENCES Gender(genderID)
+		ON UPDATE CASCADE,
+                   constraint sizeFK foreign key (sizeDog) references SizeClass(sizeClassID)
+		ON UPDATE CASCADE,
+                   constraint coatFK foreign key (coatLengthDog) references CoatLengthClass(cLengthClassID)
+		ON UPDATE CASCADE,
+                   constraint gwFK foreign key (goodWithDog) references GoodWith(goodWithID)
+		ON UPDATE CASCADE,
+                   constraint cStateFK foreign key (currentState) references StateType(stateID)
+		ON UPDATE CASCADE
                    );
-                    select * from Dog;
                  
                  
                  
                     
                                 
  
-Create table EmployeePosition ( position varchar(15),
-							    constraint EPPK primary key (position));
-
-insert into EmployeePosition(position) values ("Administrador"),("Funcionário");
+CREATE TABLE EmployeePosition ( positionID int AUTO_INCREMENT not null, position varchar(15),
+			        constraint EPPK primary key (positionID));
 
 
-Create table Employee ( nameEmployee varchar (50),
-						employeeID int auto_increment not null,
-                        genderEmployee varchar(1),
+CREATE TABLE Employee ( nameEmployee varchar (50),
+			employeeID int auto_increment not null,
+                        genderEmployee int,
                         birthdate date,
-                        username varchar(15),
-                        password varchar(15),
-                        positionHeld varchar(15),
-                        PhotoFile varchar(100),
+                        username varchar(15) NOT NULL UNIQUE,
+                        password varchar(15) NOT NULL,
+                        positionHeld int,
+                        PhotoFile varchar(100) NOT NULL,
                         
-                        Constraint EmployeePK primary key (employeeID,username),
-                        Constraint EGenderFK foreign key (genderEmployee) references Gender(gender),
-                        constraint ephFK foreign key (positionHeld) references EmployeePosition(position));
+                   constraint EmployeePK primary key (employeeID,username),
+                   constraint EGenderFK foreign key (genderEmployee) references Gender(genderID)
+		ON UPDATE CASCADE,
+                   constraint ephFK foreign key (positionHeld) references EmployeePosition(positionID)
+		ON UPDATE CASCADE
+		);
                         
-                   insert into Employee (nameEmployee, genderEmployee,birthdate,username,password,positionHeld,PhotoFile) values ("Nzembo Pitta Grós","M","2001-04-18","nzembo_gros","12345678","Administrador","DefeaultPerson.png");
-				   insert into Employee (nameEmployee, genderEmployee,birthdate,username,password,positionHeld,PhotoFile) values ("Bernardo Silva","M","1999-01-01","benno_silva","87654321","Administrador","DefaultPerson.png");
-                   select * from Employee;
+                   
                   
                    
                    
            
                    
-Create table Guest ( firstName varchar(15),
-					 lastName varchar(15),	
-					 phone varchar(11),
-                     email varchar(25),
+CREATE TABLE Guest ( firstName varchar(15),
+		     lastName varchar(15),	
+		     phone varchar(13) NOT NULL UNIQUE,
+                     email varchar(25) NOT NULL UNIQUE,
                      adress varchar(50),
                      obs text,
                      
-                     Constraint GuestPK primary key (phone));
- select*from Guest;                  
+                  constraint GuestPK primary key (phone));
 
 
 
 
 
-Create table Historic(idHistoric int auto_increment,
-					  stateType varchar(15),
-					  dogID INT,
-					  employeeID int,
-					  initialDate datetime default current_timestamp,
+CREATE TABLE Historic(idHistoric int auto_increment,
+		      stateType int,
+		      dogID INT,
+		      employeeID int,
+		      initialDate datetime default current_timestamp,
                       
-                      constraint SHFK foreign key (stateType) references StateType(state),
-                      constraint HPK primary key (idHistoric),
-					  constraint DIFK foreign key (dogID) references Dog(dogID),
-					  constraint EAFK foreign key (employeeID) references Employee(employeeID));
-Select * from Historic;
+		   constraint HPK primary key (idHistoric),
+                   constraint SHFK foreign key (stateType) references StateType(stateID),
+		   constraint DIFK foreign key (dogID) references Dog(dogID)
+		ON UPDATE CASCADE,
+		   constraint EAFK foreign key (employeeID) references Employee(employeeID)
+		ON UPDATE CASCADE
+		);
 
 
   
   
-create table StateAdoption( stateTypes varchar(10),
-
-							constraint SSPK primary key (stateTypes));
+CREATE TABLE StateAdoption( stateTypesID int AUTO_INCREMENT not null, stateTypes varchar(10),
+			    constraint SSPK primary key (stateTypesID));
                              
-insert into StateAdoption values ("on hold"),("accepted"),("rejected");
- 
-Create table AdoptionRequests (	adoptionID INT auto_increment not null ,
-								guestID varchar(11) not null,
+			     
+CREATE TABLE AdoptionRequests (	adoptionID INT auto_increment not null ,
+				guestID varchar(13) not null,
                                 dogID int not null,
-                                state varchar(10),
+                                state int,
                                 requestDate Date,
                                 
-                                constraint APK primary key (adoptionID),
-                                constraint GFK foreign key (guestID) references Guest(phone),
-                                constraint DFK foreign key (dogID) references Dog(dogID),
-                                constraint SFK foreign key (state) references StateAdoption(stateTypes)
+                   constraint APK primary key (adoptionID),
+                   constraint GFK foreign key (guestID) references Guest(phone)
+		ON UPDATE CASCADE,
+                   constraint DFK foreign key (dogID) references Dog(dogID)
+		ON UPDATE CASCADE,
+                   constraint SFK foreign key (state) references StateAdoption(stateTypesID)
+		ON UPDATE CASCADE
                         ); 
-select * from AdoptionRequests;			
 
 
 
+CREATE TABLE Events ( id int auto_increment not null,
+		      idE int not null,
+                      title varchar(20) not null,
+                      eventDate datetime not null,
+                      description Text not null,
+                      maxPart int not null,
+                      currentPart int not null,
+				    
+		   constraint idPK primary key (id,title),
+                   constraint ideFK foreign key (idE) references Employee(employeeID)
+		ON UPDATE CASCADE
+                    );
 
-		
+
+                      
+CREATE TABLE Volunteer( id int auto_increment,
+			fName varchar(14) not null,
+                        lName varchar(20) not null,
+                        phone varchar(13) not null,
+                        email varchar(50) not null,
+                        adress varchar(120) not null,
+                        password varchar(10) not null,
+                        birthdate date not null,
+                        
+                     constraint ipPK primary key (id, phone, email));
+		     
+		     
+
+CREATE TABLE Inscricao( idinsc int auto_increment,
+			idvolunteer int not null,
+			idevent int not null, 
+                        titleE varchar(20) not null,
+                        date Date not null,
+                        
+                   constraint idvFK primary key (idinsc),
+                   constraint idvFK foreign key (idvolunteer) references Volunteer(id)
+		ON UPDATE CASCADE,
+                   constraint ideiFK foreign key (idevent) references Events(id)
+		ON UPDATE CASCADE
+		);
 					
