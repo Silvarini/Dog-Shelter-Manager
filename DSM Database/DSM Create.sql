@@ -1,3 +1,4 @@
+CREATE DATABASE SHELTER;
 
 /*Dog States*/
 CREATE TABLE StateType (stateID int AUTO_INCREMENT not null, state varchar(20) not null,
