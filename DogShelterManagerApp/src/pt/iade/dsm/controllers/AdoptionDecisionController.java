@@ -14,6 +14,7 @@ import pt.iade.dsm.DAO.AdoptionRequestDAO;
 import pt.iade.dsm.DAO.DogDAO;
 import pt.iade.dsm.DAO.GuestDAO;
 import pt.iade.dsm.DAO.HistoricDAO;
+import pt.iade.dsm.communication.EmailSend;
 //import pt.iade.dsm.communication.EmailSend;
 //import pt.iade.dsm.communication.EmailSend;
 //import pt.iade.dsm.comunication.PhoneMessage;
@@ -63,6 +64,10 @@ public class AdoptionDecisionController implements Initializable{
     /** The dog C. */
     /*Dog that the guest wants to adopt*/
     private Dog dogC = null;
+    
+    /**The guest C. */
+    /*Guest that wants to adopt a dog*/
+    private Guest guestC = null;
     
     /** The new state. */
     /*The new state of the dog after employee's decision*/
@@ -139,6 +144,7 @@ public class AdoptionDecisionController implements Initializable{
     	 submitL.setText("Process completed.");
     	
     }
+    	EmailSend.sendEmail(guestC.getEmail(), selectedAdoption.getState().getAdoption());
   
     } 
         
@@ -172,6 +178,7 @@ public class AdoptionDecisionController implements Initializable{
 				}
 				guestInfoL.setText(guest.getFirstName()+" "+guest.getLastName()+" | "+guest.getPhone()+" | "+guest.getEmail());
 				obsL.setText(guest.getFirstName()+": "+guest.getObs());
+				guestC=guest;
 				
 				/*Selects a specific dog from Dog table
 			     * Inserts his information in the elements of the page

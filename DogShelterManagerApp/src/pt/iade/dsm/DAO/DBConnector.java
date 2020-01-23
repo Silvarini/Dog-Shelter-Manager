@@ -19,12 +19,6 @@ public class DBConnector {
 	private static final String USER = "hBEttxy9DD";
 	
 	
-	/*
-	private static final String URL = "jdbc:mysql://localhost:3306/shelter?useSSL=false";
-	private static final String PASS = "50039011";
-	private static final String USER = "root";
-	*/
-	
 	/** The connector. */
 	private static Connection connector;
 	
