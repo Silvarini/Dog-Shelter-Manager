@@ -1,5 +1,5 @@
   /*Dog States*/
-	insert into StateType (state) values ("dead"),("adopted"),("returned"),("not adopted");
+  insert into StateType (state) values ("dead"),("adopted"),("returned"),("not adopted");
   
   /*Genders*/
   insert into Gender(Gender) value ("Male"),("Female");
@@ -8,7 +8,7 @@
   insert into CoatLengthClass(cLengthCLass) values ("small"),("medium"),("large");
   
   /*Dog Good With Class (his interaction with others)*/
-	insert into GoodWith(goodWith) values ("Dogs"),("Kids"),("Cats"),("Birds"),("None"),("All Species");
+  insert into GoodWith(goodWith) values ("Dogs"),("Kids"),("Cats"),("Birds"),("None"),("All Species");
   
   /*Dog Size Class*/  
   insert into SizeClass(sizeClass) values ("XS"),("small"),("medium"),("large"),("XL");
@@ -17,7 +17,7 @@
   insert into Breed(breed) values ("Beagle"),("Boerboel"),("Anatolian Sheperd"),("Bullboxer Pit"),("Cane Corso"),("Dachsador"),("Labradane"),("Corgi");
   
   /*Dog AgeClass*/
-	insert into AgeClass (ageClass)values ("Puppy"),("Young"),("Adult"),("Senior");
+  insert into AgeClass (ageClass)values ("Puppy"),("Young"),("Adult"),("Senior");
   
   /*Employee Roles*/
   insert into EmployeePosition(position) values ("Administrador"),("Funcionário");
