@@ -59,7 +59,7 @@ Ao criar clicar no botão Create Event, o funcionário pode escolher o título e
 
 	
 ## Diagramas
-![](DiagramaER.png)
+![](DiagramaER.PNG)
 ![](DiagramaClass.PNG)
 
 
