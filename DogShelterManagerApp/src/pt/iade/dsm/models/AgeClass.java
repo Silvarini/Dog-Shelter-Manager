@@ -9,7 +9,7 @@ import javafx.collections.ObservableList;
 import pt.iade.dsm.DAO.DBConnector;
 
 /**
- * The Class AgeClass.
+ * This model represents the age class, where you have the constructor and DAO.
  */
 public class AgeClass {
 	

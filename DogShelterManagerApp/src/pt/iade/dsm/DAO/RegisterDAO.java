@@ -12,7 +12,7 @@ import javafx.collections.ObservableList;
 import pt.iade.dsm.models.Registration;
 
 /**
- * The Class RegisterDAO.
+ * This class connects to the database to insert new registrations on events and gets registrations.
  */
 public class RegisterDAO {
 	

@@ -10,7 +10,8 @@ import javafx.collections.ObservableList;
 import pt.iade.dsm.DAO.DBConnector;
 
 /**
- * The Class StateDog.
+ * This model represents the dog's state, where you have the constructor and DAO.
+ *  
  */
 public class StateDog {
 	

@@ -3,7 +3,7 @@ package pt.iade.dsm.models;
 import java.time.LocalDate;
 
 /**
- * The Class Registration.
+ * This model represents the registrations on events.
  */
 public class Registration {
 	

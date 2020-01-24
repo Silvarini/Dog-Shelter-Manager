@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import pt.iade.dsm.DAO.DBConnector;
 
 /**
- * The Class Gender.
+ * This model represents the gender class, where you have the constructor and DAO.
  */
 public class Gender {
 	

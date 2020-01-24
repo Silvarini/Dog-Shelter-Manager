@@ -10,7 +10,7 @@ import javafx.collections.ObservableList;
 import pt.iade.dsm.DAO.DBConnector;
 
 /**
- * The Class EmployeePosition.
+ * This model represents the employee's role class, where you have the constructor and DAO.
  */
 public class EmployeePosition {
 	

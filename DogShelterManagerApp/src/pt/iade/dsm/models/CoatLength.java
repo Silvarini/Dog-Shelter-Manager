@@ -9,7 +9,7 @@ import javafx.collections.ObservableList;
 import pt.iade.dsm.DAO.DBConnector;
 
 /**
- * The Class CoatLength.
+ * This model represents the coat length class, where you have the constructor and DAO.
  */
 public class CoatLength {
 	

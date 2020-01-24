@@ -10,7 +10,7 @@ import javafx.collections.ObservableList;
 import pt.iade.dsm.DAO.DBConnector;
 
 /**
- * The Class StateAdoption.
+ * This model represents the adoption state, where you have the constructor and DAO.
  */
 public class StateAdoption {
 

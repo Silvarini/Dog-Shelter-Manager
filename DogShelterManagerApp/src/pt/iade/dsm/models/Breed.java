@@ -9,7 +9,7 @@ import javafx.collections.ObservableList;
 import pt.iade.dsm.DAO.DBConnector;
 
 /**
- * The Class Breed.
+ * This model represents the breed class, where you have the constructor and DAO.
  */
 public class Breed {
 	

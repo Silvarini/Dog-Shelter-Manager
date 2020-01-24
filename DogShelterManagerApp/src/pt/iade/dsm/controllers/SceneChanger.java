@@ -11,8 +11,7 @@ import javafx.stage.Stage;
 import pt.iade.dsm.Main;
 
 /**
- * The Class SceneChanger.
- * Code for scene changing.
+ * Class for scene changing.
  */
 public class SceneChanger {
 

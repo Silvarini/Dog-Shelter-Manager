@@ -6,7 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * The Class Volunteer.
+ * This model represents the volunteer.
  */
 public class Volunteer {
 	

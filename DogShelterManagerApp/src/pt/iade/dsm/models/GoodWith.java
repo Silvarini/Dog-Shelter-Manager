@@ -9,7 +9,7 @@ import javafx.collections.ObservableList;
 import pt.iade.dsm.DAO.DBConnector;
 
 /**
- * The Class GoodWith.
+ * This model represents the dog's good with class, where you have the constructor and DAO.
  */
 public class GoodWith {
 	

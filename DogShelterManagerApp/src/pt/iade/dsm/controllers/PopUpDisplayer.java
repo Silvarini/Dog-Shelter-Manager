@@ -10,8 +10,7 @@ import javafx.stage.Stage;
 import pt.iade.dsm.Main;
 
 /**
- * The Class PopUpDisplayer.
- * The code for the pop ups.
+ * Class for the pop ups.
  */
 public class PopUpDisplayer {
 	

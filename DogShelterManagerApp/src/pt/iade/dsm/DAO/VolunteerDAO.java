@@ -13,7 +13,7 @@ import pt.iade.dsm.models.Registration;
 import pt.iade.dsm.models.Volunteer;
 
 /**
- * The Class VolunteerDAO.
+ * This class connects to the database to insert new volunteers, and get their information.
  */
 public class VolunteerDAO {
 

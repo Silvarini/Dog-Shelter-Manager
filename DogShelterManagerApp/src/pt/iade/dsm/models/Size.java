@@ -10,7 +10,7 @@ import javafx.collections.ObservableList;
 import pt.iade.dsm.DAO.DBConnector;
 
 /**
- * The Class Size.
+ * This model represents the size class, where you have the constructor and DAO.
  */
 public class Size {
 	

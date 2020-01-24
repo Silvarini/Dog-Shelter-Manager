@@ -13,7 +13,7 @@ import javafx.collections.ObservableList;
 import pt.iade.dsm.models.Event;
 
 /**
- * The Class EventDAO.
+ * This class connects to the database to get and set values from the event's table.
  */
 public class EventDAO {
 

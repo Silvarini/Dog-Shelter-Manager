@@ -38,14 +38,9 @@ import pt.iade.dsm.models.StateDog;
 
 
 
-/*
- * This class is where the Employee can edit the dog's information.
- * 
- * 
- * */
 
 /**
- * The Class EditDogController.
+ * This class is the controller for the page where the dog's information can be edited by the employee.
  */
 public class EditDogController implements Initializable {
 	
