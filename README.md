@@ -55,7 +55,7 @@ Creating a new employee.
 Employee's page.
 ![](GUI/EmployeePage.PNG)
 Creating a new dog.
-![](GUI/CreateDog.PNG)
+![](GUI/CreatDog.PNG)
 Editing a dog's profile.
 ![](GUI/EditDog.PNG)
 After selecting category Animals, you get list of dogs.
