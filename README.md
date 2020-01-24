@@ -48,12 +48,24 @@ Ao criar clicar no botão Create Event, o funcionário pode escolher o título e
 
 ## GUI
 ![](GUI/LandingPage.png)
-![](GUI/Employee.png)
-![](GUI/AddDog.png)
-![](GUI/AnimalsPage.png)
-![](GUI/AnimalProfile.png)
-![](GUI/AdoptionPopUp.png)
-![](GUI/AdoptionConfirmation.PNG)
+Administrator's page.
+![](GUI/AdminPage.PNG)
+Creating a new employee.
+![](GUI/CreateEmployee.PNG)
+Employee's page.
+![](GUI/EmployeePage.PNG)
+Creating a new dog.
+![](GUI/CreateDog.PNG)
+Editing a dog's profile.
+![](GUI/EditDog.PNG)
+After selecting category Animals, you get list of dogs.
+![](GUI/DogList.PNG)
+Dog's profile.
+![](GUI/DogProfile.PNG)
+Employee creating a new event.
+![](GUI/CreateEvent.PNG)
+After selecting category Volunteers, and already registered into the system as volunteer, you get volunteer's page.
+![](GUI/VolunteerPage.PNG)
 
 
 
