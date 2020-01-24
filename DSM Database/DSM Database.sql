@@ -29,4 +29,14 @@ WHERE genderEmployee = Gender.genderID AND positionHeld = EmployeePosition.posit
 SELECT * FROM Events;
 
 
+/Empregado que mais realizou adoções/
+SELECT Employee.employeeID, nameEmployee, count(Historic.employeeID) as "number of adoptions" FROM Employee, Historic WHERE Employee.employeeID = Historic.employeeID and Historic.employeeID = ( 
+	SELECT employeeID FROM Historic GROUP BY employeeID HAVING count(employeeID) = ( 
+		SELECT count(employeeID) AS great FROM Historic GROUP BY employeeID ORDER BY great desc limit 1) and Historic.stateType=2 and DATEDIFF(now(), Historic.initialDate)<30;
 
+/Nºmortes nos últimos trinta dias/
+SELECT COUNT(Historic.stateType) AS "Nº de mortes nos últimos trinta dias"FROM Historic WHERE stateType=1 AND DATEDIFF(now(),initialDate)<30;
+
+/voluntário que mais participou em eventos/
+select Volunteer.id, Volunteer.fName, count(Inscricao.idvolunteer) as "Nº of participations" from Volunteer, Inscricao where Volunteer.id = Inscricao.idvolunteer and Inscricao.idvolunteer = (
+	select Inscricao.idvolunteer from Inscricao group by Inscricao.idvolunteer having count(Inscricao.idvolunteer) =(		select count(Inscricao.idvolunteer) as great from Inscricao group by Inscricao.idvolunteer order by great desc limit 1 ) limit 1) AND DATEDIFF(now(), Historic.initialDate)<30 ;
