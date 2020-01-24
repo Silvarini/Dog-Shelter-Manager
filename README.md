@@ -63,7 +63,7 @@ After selecting category Animals, you get list of dogs.
 Dog's profile.
 ![](GUI/DogProfile.PNG)
 Employee creating a new event.
-![](GUI/CreateEvent.PNG)
+![](GUI/CreatEvent.PNG)
 After selecting category Volunteers, and already registered into the system as volunteer, you get volunteer's page.
 ![](GUI/VolunteerPage.PNG)
 
