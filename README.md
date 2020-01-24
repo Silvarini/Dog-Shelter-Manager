@@ -75,6 +75,8 @@ After selecting category Volunteers, and already registered into the system as v
 ![](DiagramaClass.PNG)
 
 
+![](DSM_Poster.png)
+
 
 ## Referências
 (2019). Animal Shelters & Rescues for Pet Adoption. Acedido em: 05/10/2019, em: www.petfinder.com.
